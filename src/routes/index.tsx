@@ -65,28 +65,29 @@ function HomePage() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <span className="font-mono text-xs uppercase tracking-tighter text-accent border-b border-accent/30 pb-1">
-                The Artist
+                L'Artiste
               </span>
             </div>
           </div>
           <div className="lg:col-span-8 max-w-2xl">
             <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
-              "A profound silence between the chords." — Le Monde de la Musique
+              « Un silence profond entre les accords. » — Le Monde de la Musique
             </p>
             <p className="text-lg leading-relaxed opacity-80">
-              A decade as titular organist at the Abbey of Saint-Germain shaped
-              a body of work that bridges French Romantic monumentalism and
-              modern textural austerity. Recordings on the Archiv label have
-              been cited for their rhythmic clarity and spatial awareness.
+              Une décennie comme organiste titulaire de l'Abbaye de
+              Saint-Germain a façonné une œuvre qui jette un pont entre le
+              monumentalisme romantique français et l'austérité texturale
+              moderne. Ses enregistrements sur le label Archiv sont salués
+              pour leur clarté rythmique et leur sens de l'espace.
             </p>
           </div>
         </section>
 
-        {/* Recent works strip */}
+        {/* Œuvres récentes */}
         <section className="border-t-2 border-foreground pt-8">
           <div className="flex items-baseline justify-between mb-10">
             <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
-              Recent
+              Récents
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               MMXXII — MMXXIV
@@ -96,20 +97,20 @@ function HomePage() {
             {[
               {
                 no: "01",
-                title: "Tenebrae Responsories",
-                meta: "Solo organ & countertenor",
+                title: "Répons des Ténèbres",
+                meta: "Orgue solo & contre-ténor",
                 year: "2022",
               },
               {
                 no: "02",
-                title: "Catenary Curves",
-                meta: "Symphonic poem for grand organ",
+                title: "Courbes Caténaires",
+                meta: "Poème symphonique pour grand orgue",
                 year: "2019",
               },
               {
                 no: "03",
-                title: "Vesper Variations",
-                meta: "Chamber organ ensemble",
+                title: "Variations Vespérales",
+                meta: "Ensemble d'orgue de chambre",
                 year: "2023",
               },
             ].map((w) => (
