@@ -6,17 +6,17 @@ import organPipes from "@/assets/organ-pipes.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Elias Vogel — Organist & Composer" },
+      { title: "Elias Vogel — Organiste & Compositeur" },
       {
         name: "description",
         content:
-          "Concert organist and composer. The resonance of ancient stone — selected works, biography, and downloadable scores.",
+          "Organiste concertiste et compositeur. La résonance de la pierre ancienne — œuvres choisies, biographie et partitions à télécharger.",
       },
-      { property: "og:title", content: "Elias Vogel — Organist & Composer" },
+      { property: "og:title", content: "Elias Vogel — Organiste & Compositeur" },
       {
         property: "og:description",
         content:
-          "The resonance of ancient stone. Concert organist and composer based in Cologne.",
+          "La résonance de la pierre ancienne. Organiste concertiste et compositeur établi à Cologne.",
       },
     ],
   }),
