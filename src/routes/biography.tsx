@@ -5,17 +5,17 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/biography")({
   head: () => ({
     meta: [
-      { title: "Biography — Elias Vogel" },
+      { title: "Biographie — Elias Vogel" },
       {
         name: "description",
         content:
-          "Biography of Elias Vogel, concert organist and composer based in Cologne. Education, residencies, and recorded works.",
+          "Biographie d'Elias Vogel, organiste concertiste et compositeur établi à Cologne. Formation, résidences et enregistrements.",
       },
-      { property: "og:title", content: "Biography — Elias Vogel" },
+      { property: "og:title", content: "Biographie — Elias Vogel" },
       {
         property: "og:description",
         content:
-          "A life shaped by stone, wind, and the silence between chords.",
+          "Une voix sculptée par l'espace, la pierre et le souffle.",
       },
     ],
   }),
@@ -23,12 +23,12 @@ export const Route = createFileRoute("/biography")({
 });
 
 const timeline = [
-  { year: "1984", text: "Born in Brussels into a family of liturgical musicians." },
-  { year: "2006", text: "Premier Prix, Conservatoire de Paris (organ, composition)." },
-  { year: "2010", text: "Appointed titular organist, Abbey of Saint-Germain." },
-  { year: "2016", text: "Debut recording for the Archiv label, 'Stone & Air'." },
-  { year: "2021", text: "Composer-in-residence, Kölner Philharmonie." },
-  { year: "2024", text: "Tour: Westminster, Notre-Dame, Berliner Philharmonie." },
+  { year: "1984", text: "Naissance à Bruxelles dans une famille de musiciens liturgiques." },
+  { year: "2006", text: "Premier Prix, Conservatoire de Paris (orgue, composition)." },
+  { year: "2010", text: "Nommé organiste titulaire de l'Abbaye de Saint-Germain." },
+  { year: "2016", text: "Premier enregistrement pour le label Archiv, « Pierre & Air »." },
+  { year: "2021", text: "Compositeur en résidence, Kölner Philharmonie." },
+  { year: "2024", text: "Tournée : Westminster, Notre-Dame, Berliner Philharmonie." },
 ];
 
 function BiographyPage() {
@@ -38,41 +38,41 @@ function BiographyPage() {
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <header className="mb-16 md:mb-24 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Biography
+            Biographie
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
-            A voice <span className="italic font-normal">sculpted</span> by space.
+            Une voix <span className="italic font-normal">sculptée</span> par l'espace.
           </h1>
         </header>
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 mb-24 animate-reveal">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32 space-y-2">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Born</p>
-              <p className="font-display text-xl italic">Brussels, 1984</p>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground pt-4">Resides</p>
-              <p className="font-display text-xl italic">Cologne, Germany</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Né à</p>
+              <p className="font-display text-xl italic">Bruxelles, 1984</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground pt-4">Réside à</p>
+              <p className="font-display text-xl italic">Cologne, Allemagne</p>
             </div>
           </div>
           <div className="lg:col-span-8 max-w-2xl space-y-6 text-lg leading-relaxed">
             <p className="font-display text-2xl md:text-3xl leading-snug">
-              Elias Vogel's work is characterized by a "profound silence between
-              the chords," a philosophy garnered from a decade spent as the
-              titular organist at the Abbey of Saint-Germain.
+              L'œuvre d'Elias Vogel se distingue par un « silence profond entre
+              les accords », philosophie née d'une décennie passée comme
+              organiste titulaire de l'Abbaye de Saint-Germain.
             </p>
             <p className="opacity-85">
-              His compositions for the pipe organ bridge the gap between the
-              monumentalism of the French Romantic school and the textural
-              austerity of modernism. His recordings for the <em>Archiv</em>{" "}
-              label have been cited for their rhythmic clarity and spatial
-              awareness.
+              Ses compositions pour grand orgue jettent un pont entre le
+              monumentalisme de l'école romantique française et l'austérité
+              texturale du modernisme. Ses enregistrements pour le label{" "}
+              <em>Archiv</em> ont été salués pour leur clarté rythmique et
+              leur sens de l'espace.
             </p>
             <p className="opacity-85">
-              Currently residing in Cologne, Vogel continues to commission new
-              works that push the mechanical limits of the tracker action
-              organ, seeking the human breath within the machine. He has
-              performed at Westminster Abbey, Notre-Dame de Paris, and the
-              Berliner Philharmonie.
+              Établi aujourd'hui à Cologne, Vogel continue de commander des
+              œuvres nouvelles qui repoussent les limites mécaniques de
+              l'orgue à traction directe, cherchant le souffle humain au cœur
+              de la machine. Il s'est produit à l'Abbaye de Westminster, à
+              Notre-Dame de Paris et à la Berliner Philharmonie.
             </p>
           </div>
         </section>
@@ -80,7 +80,7 @@ function BiographyPage() {
         <section className="border-t-2 border-foreground pt-8">
           <div className="flex items-baseline justify-between mb-10">
             <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
-              Selected Chronology
+              Chronologie choisie
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               MCMLXXXIV —

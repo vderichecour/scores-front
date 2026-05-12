@@ -6,17 +6,17 @@ import organPipes from "@/assets/organ-pipes.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Elias Vogel — Organist & Composer" },
+      { title: "Elias Vogel — Organiste & Compositeur" },
       {
         name: "description",
         content:
-          "Concert organist and composer. The resonance of ancient stone — selected works, biography, and downloadable scores.",
+          "Organiste concertiste et compositeur. La résonance de la pierre ancienne — œuvres choisies, biographie et partitions à télécharger.",
       },
-      { property: "og:title", content: "Elias Vogel — Organist & Composer" },
+      { property: "og:title", content: "Elias Vogel — Organiste & Compositeur" },
       {
         property: "og:description",
         content:
-          "The resonance of ancient stone. Concert organist and composer based in Cologne.",
+          "La résonance de la pierre ancienne. Organiste concertiste et compositeur établi à Cologne.",
       },
     ],
   }),
@@ -35,25 +35,26 @@ function HomePage() {
               Op. — Cologne, 2024
             </p>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black mb-8 leading-[0.9] text-balance">
-              The resonance of{" "}
-              <span className="italic font-normal">ancient</span> stone.
+              La résonance de la{" "}
+              <span className="italic font-normal">pierre</span> ancienne.
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed max-w-[34ch] text-pretty opacity-90">
-              Composer and concert organist exploring the intersection of
-              liturgical tradition and contemporary minimalist structures.
+              Compositeur et organiste concertiste explorant la rencontre entre
+              la tradition liturgique et les structures minimalistes
+              contemporaines.
             </p>
           </div>
           <div className="lg:col-span-5 animate-reveal [animation-delay:400ms]">
             <figure>
               <img
                 src={organPipes}
-                alt="Towering pipe organ in a dimly lit gothic cathedral"
+                alt="Grand orgue à tuyaux dans une cathédrale gothique faiblement éclairée"
                 width={800}
                 height={1024}
                 className="w-full aspect-[4/5] object-cover rounded-sm border border-border"
               />
               <figcaption className="mt-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                Fig. 01 — Saint-Sernin, tribune organ
+                Fig. 01 — Saint-Sernin, orgue de tribune
               </figcaption>
             </figure>
           </div>
@@ -64,28 +65,29 @@ function HomePage() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <span className="font-mono text-xs uppercase tracking-tighter text-accent border-b border-accent/30 pb-1">
-                The Artist
+                L'Artiste
               </span>
             </div>
           </div>
           <div className="lg:col-span-8 max-w-2xl">
             <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
-              "A profound silence between the chords." — Le Monde de la Musique
+              « Un silence profond entre les accords. » — Le Monde de la Musique
             </p>
             <p className="text-lg leading-relaxed opacity-80">
-              A decade as titular organist at the Abbey of Saint-Germain shaped
-              a body of work that bridges French Romantic monumentalism and
-              modern textural austerity. Recordings on the Archiv label have
-              been cited for their rhythmic clarity and spatial awareness.
+              Une décennie comme organiste titulaire de l'Abbaye de
+              Saint-Germain a façonné une œuvre qui jette un pont entre le
+              monumentalisme romantique français et l'austérité texturale
+              moderne. Ses enregistrements sur le label Archiv sont salués
+              pour leur clarté rythmique et leur sens de l'espace.
             </p>
           </div>
         </section>
 
-        {/* Recent works strip */}
+        {/* Œuvres récentes */}
         <section className="border-t-2 border-foreground pt-8">
           <div className="flex items-baseline justify-between mb-10">
             <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
-              Recent
+              Récents
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               MMXXII — MMXXIV
@@ -95,20 +97,20 @@ function HomePage() {
             {[
               {
                 no: "01",
-                title: "Tenebrae Responsories",
-                meta: "Solo organ & countertenor",
+                title: "Répons des Ténèbres",
+                meta: "Orgue solo & contre-ténor",
                 year: "2022",
               },
               {
                 no: "02",
-                title: "Catenary Curves",
-                meta: "Symphonic poem for grand organ",
+                title: "Courbes Caténaires",
+                meta: "Poème symphonique pour grand orgue",
                 year: "2019",
               },
               {
                 no: "03",
-                title: "Vesper Variations",
-                meta: "Chamber organ ensemble",
+                title: "Variations Vespérales",
+                meta: "Ensemble d'orgue de chambre",
                 year: "2023",
               },
             ].map((w) => (

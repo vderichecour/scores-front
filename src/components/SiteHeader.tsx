@@ -13,14 +13,14 @@ export function SiteHeader() {
             activeProps={{ className: "text-accent" }}
             className="hover:text-accent transition-colors"
           >
-            Biography
+            Biographie
           </Link>
           <Link
             to="/scores"
             activeProps={{ className: "text-accent" }}
             className="hover:text-accent transition-colors"
           >
-            Scores
+            Partitions
           </Link>
           <Link
             to="/contact"
