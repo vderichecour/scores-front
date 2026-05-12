@@ -9,12 +9,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Elias Vogel for booking inquiries, commissions, and recital programmes.",
+          "Contactez Elias Vogel pour des concerts, des commandes et des programmes de récital.",
       },
       { property: "og:title", content: "Contact — Elias Vogel" },
       {
         property: "og:description",
-        content: "For commissions, recitals, and correspondence.",
+        content: "Pour les commandes, les récitals et la correspondance.",
       },
     ],
   }),
@@ -28,10 +28,10 @@ function ContactPage() {
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <header className="mb-16 md:mb-20 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Correspondence
+            Correspondance
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
-            For commissions <span className="italic font-normal">&amp;</span> recitals.
+            Pour commandes <span className="italic font-normal">&amp;</span> récitals.
           </h1>
         </header>
 
@@ -50,7 +50,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
-                Management — Europe
+                Agent — Europe
               </p>
               <p className="font-display text-2xl">
                 M. Halbreich, <em>Konzertdirektion Köln</em>
@@ -64,7 +64,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
-                Press
+                Presse
               </p>
               <a
                 href="mailto:press@eliasvogel.com"
@@ -80,9 +80,10 @@ function ContactPage() {
               Note
             </p>
             <p className="text-lg leading-relaxed opacity-85">
-              Commission inquiries should include intended ensemble, premiere
-              date, and venue. Recital programmes are confirmed eighteen
-              months in advance. Replies within ten working days.
+              Les demandes de commande doivent préciser l'effectif souhaité,
+              la date de création et le lieu. Les programmes de récital sont
+              confirmés dix-huit mois à l'avance. Réponse sous dix jours
+              ouvrés.
             </p>
           </aside>
         </section>
