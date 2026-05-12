@@ -35,25 +35,26 @@ function HomePage() {
               Op. — Cologne, 2024
             </p>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black mb-8 leading-[0.9] text-balance">
-              The resonance of{" "}
-              <span className="italic font-normal">ancient</span> stone.
+              La résonance de la{" "}
+              <span className="italic font-normal">pierre</span> ancienne.
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed max-w-[34ch] text-pretty opacity-90">
-              Composer and concert organist exploring the intersection of
-              liturgical tradition and contemporary minimalist structures.
+              Compositeur et organiste concertiste explorant la rencontre entre
+              la tradition liturgique et les structures minimalistes
+              contemporaines.
             </p>
           </div>
           <div className="lg:col-span-5 animate-reveal [animation-delay:400ms]">
             <figure>
               <img
                 src={organPipes}
-                alt="Towering pipe organ in a dimly lit gothic cathedral"
+                alt="Grand orgue à tuyaux dans une cathédrale gothique faiblement éclairée"
                 width={800}
                 height={1024}
                 className="w-full aspect-[4/5] object-cover rounded-sm border border-border"
               />
               <figcaption className="mt-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                Fig. 01 — Saint-Sernin, tribune organ
+                Fig. 01 — Saint-Sernin, orgue de tribune
               </figcaption>
             </figure>
           </div>
