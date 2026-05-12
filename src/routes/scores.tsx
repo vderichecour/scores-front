@@ -5,17 +5,17 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/scores")({
   head: () => ({
     meta: [
-      { title: "Scores — Elias Vogel" },
+      { title: "Partitions — Elias Vogel" },
       {
         name: "description",
         content:
-          "Selected scores by Elias Vogel, available for study and performance. Free PDF downloads.",
+          "Partitions choisies d'Elias Vogel, disponibles pour l'étude et le concert. Téléchargements PDF gratuits.",
       },
-      { property: "og:title", content: "Scores — Elias Vogel" },
+      { property: "og:title", content: "Partitions — Elias Vogel" },
       {
         property: "og:description",
         content:
-          "Published scores for organ and ensemble. Available for study and performance.",
+          "Partitions publiées pour orgue et ensemble. Disponibles pour l'étude et le concert.",
       },
     ],
   }),
@@ -25,40 +25,40 @@ export const Route = createFileRoute("/scores")({
 const scores = [
   {
     no: "01",
-    title: "Tenebrae Responsories",
-    sub: "For solo organ & countertenor",
+    title: "Répons des Ténèbres",
+    sub: "Pour orgue solo & contre-ténor",
     year: "2022",
     duration: "14′ 20″",
     file: "/scores/tenebrae-responsories.pdf",
   },
   {
     no: "02",
-    title: "Catenary Curves",
-    sub: "Symphonic poem for grand organ",
+    title: "Courbes Caténaires",
+    sub: "Poème symphonique pour grand orgue",
     year: "2019",
     duration: "28′ 00″",
     file: "/scores/catenary-curves.pdf",
   },
   {
     no: "03",
-    title: "Vesper Variations",
-    sub: "Chamber organ ensemble",
+    title: "Variations Vespérales",
+    sub: "Ensemble d'orgue de chambre",
     year: "2023",
     duration: "09′ 45″",
     file: "/scores/vesper-variations.pdf",
   },
   {
     no: "04",
-    title: "Three Plainchant Studies",
-    sub: "Solo organ — manuals only",
+    title: "Trois Études sur le Plain-chant",
+    sub: "Orgue solo — claviers seuls",
     year: "2021",
     duration: "11′ 10″",
     file: "/scores/three-plainchant-studies.pdf",
   },
   {
     no: "05",
-    title: "Liturgy of the Trees",
-    sub: "Chamber choir & organ",
+    title: "Liturgie des Arbres",
+    sub: "Chœur de chambre & orgue",
     year: "2020",
     duration: "08′ 30″",
     file: "/scores/liturgy-of-the-trees.pdf",
@@ -75,21 +75,22 @@ function ScoresPage() {
             Catalogue
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl mb-6">
-            Published <span className="italic font-normal">scores</span>.
+            Partitions <span className="italic font-normal">publiées</span>.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            A working catalogue of pieces available for study and performance.
-            Materials are provided as PDF; please credit on all programmes.
+            Un catalogue vivant d'œuvres disponibles pour l'étude et le
+            concert. Les partitions sont fournies au format PDF ; merci de
+            mentionner l'auteur sur tous les programmes.
           </p>
         </header>
 
         <section className="animate-reveal [animation-delay:200ms]">
           <div className="flex items-baseline justify-between mb-8 border-b-2 border-foreground pb-4">
             <h2 className="font-display text-3xl font-bold tracking-tight">
-              Selected Scores
+              Partitions choisies
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest hidden sm:block">
-              Available for Study &amp; Performance
+              Pour l'étude &amp; le concert
             </span>
           </div>
 
@@ -119,7 +120,7 @@ function ScoresPage() {
                     href={s.file}
                     className="inline-block px-4 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
                   >
-                    Download PDF
+                    Télécharger PDF
                   </a>
                 </div>
               </article>
