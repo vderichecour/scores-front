@@ -72,18 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Elias Vogel — Organist & Composer" },
+      { title: "Elias Vogel — Organiste & Compositeur" },
       {
         name: "description",
         content:
-          "Elias Vogel is a concert organist and composer exploring liturgical tradition through contemporary minimalist structures. Listen, read, and download scores.",
+          "Elias Vogel est organiste concertiste et compositeur, explorant la tradition liturgique à travers des structures minimalistes contemporaines. Écoutez, lisez et téléchargez ses partitions.",
       },
       { name: "author", content: "Elias Vogel" },
-      { property: "og:title", content: "Elias Vogel — Organist & Composer" },
+      { property: "og:title", content: "Elias Vogel — Organiste & Compositeur" },
       {
         property: "og:description",
         content:
-          "Concert organist and composer. Selected works, biography, and downloadable scores.",
+          "Organiste concertiste et compositeur. Œuvres choisies, biographie et partitions à télécharger.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
