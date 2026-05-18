@@ -37,29 +37,29 @@
 :root {
   --radius: 0.25rem;
 
-  /* Editorial Archive palette */
-  --background: oklch(0.973 0.012 85);     /* Ivory parchment #F9F7F2 */
-  --foreground: oklch(0.181 0.008 60);     /* Near-black ink #1A1816 */
-  --card: oklch(0.973 0.012 85);
-  --card-foreground: oklch(0.181 0.008 60);
-  --popover: oklch(0.973 0.012 85);
-  --popover-foreground: oklch(0.181 0.008 60);
-  --primary: oklch(0.181 0.008 60);
-  --primary-foreground: oklch(0.973 0.012 85);
-  --secondary: oklch(0.94 0.012 85);
-  --secondary-foreground: oklch(0.181 0.008 60);
-  --muted: oklch(0.94 0.012 85);
-  --muted-foreground: oklch(0.45 0.012 60);
-  --accent: oklch(0.36 0.13 25);           /* Deep burgundy #6B1B1B */
-  --accent-foreground: oklch(0.973 0.012 85);
+  /* Modern Editorial palette — bright off-white, ink, vivid cobalt accent */
+  --background: oklch(0.985 0.004 240);    /* Bright off-white */
+  --foreground: oklch(0.22 0.02 260);      /* Deep ink with cool tint */
+  --card: oklch(0.985 0.004 240);
+  --card-foreground: oklch(0.22 0.02 260);
+  --popover: oklch(0.985 0.004 240);
+  --popover-foreground: oklch(0.22 0.02 260);
+  --primary: oklch(0.22 0.02 260);
+  --primary-foreground: oklch(0.985 0.004 240);
+  --secondary: oklch(0.95 0.01 250);
+  --secondary-foreground: oklch(0.22 0.02 260);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.5 0.02 260);
+  --accent: oklch(0.58 0.24 262);          /* Vivid cobalt blue */
+  --accent-foreground: oklch(0.985 0.004 240);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.181 0.008 60 / 0.12);
-  --input: oklch(0.181 0.008 60 / 0.12);
-  --ring: oklch(0.36 0.13 25);
+  --border: oklch(0.22 0.02 260 / 0.12);
+  --input: oklch(0.22 0.02 260 / 0.12);
+  --ring: oklch(0.58 0.24 262);
 
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Fraunces", "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
