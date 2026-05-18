@@ -72,18 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Elias Vogel — Organiste & Compositeur" },
+      { title: "Clément Portal — Organiste & Partitions" },
       {
         name: "description",
         content:
-          "Elias Vogel est organiste concertiste et compositeur, explorant la tradition liturgique à travers des structures minimalistes contemporaines. Écoutez, lisez et téléchargez ses partitions.",
+          "Clément Portal, organiste. Partitions harmonisées et composées, librement disponibles au téléchargement.",
       },
-      { name: "author", content: "Elias Vogel" },
-      { property: "og:title", content: "Elias Vogel — Organiste & Compositeur" },
+      { name: "author", content: "Clément Portal" },
+      { property: "og:title", content: "Clément Portal — Organiste & Partitions" },
       {
         property: "og:description",
         content:
-          "Organiste concertiste et compositeur. Œuvres choisies, biographie et partitions à télécharger.",
+          "Partitions harmonisées et composées par Clément Portal, organiste.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
