@@ -5,63 +5,66 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/scores")({
   head: () => ({
     meta: [
-      { title: "Partitions — Elias Vogel" },
+      { title: "Partitions — Clément Portal" },
       {
         name: "description",
         content:
-          "Partitions choisies d'Elias Vogel, disponibles pour l'étude et le concert. Téléchargements PDF gratuits.",
+          "Catalogue des partitions harmonisées et composées par Clément Portal, librement téléchargeables au format PDF.",
       },
-      { property: "og:title", content: "Partitions — Elias Vogel" },
+      { property: "og:title", content: "Partitions — Clément Portal" },
       {
         property: "og:description",
         content:
-          "Partitions publiées pour orgue et ensemble. Disponibles pour l'étude et le concert.",
+          "Partitions pour orgue : harmonisations et compositions originales.",
       },
     ],
   }),
   component: ScoresPage,
 });
 
-const scores = [
+type Score = {
+  no: string;
+  title: string;
+  author: string;
+  composer: string;
+  file: string;
+};
+
+const scores: Score[] = [
   {
     no: "01",
     title: "Répons des Ténèbres",
-    sub: "Pour orgue solo & contre-ténor",
-    year: "2022",
-    duration: "14′ 20″",
-    file: "/scores/tenebrae-responsories.pdf",
+    author: "Liturgie du Triduum",
+    composer: "Harmonisation : Clément Portal",
+    file: "/scores/repons-des-tenebres.pdf",
   },
   {
     no: "02",
-    title: "Courbes Caténaires",
-    sub: "Poème symphonique pour grand orgue",
-    year: "2019",
-    duration: "28′ 00″",
-    file: "/scores/catenary-curves.pdf",
+    title: "Veni Creator",
+    author: "Raban Maur",
+    composer: "Harmonisation : Clément Portal",
+    file: "/scores/veni-creator.pdf",
   },
   {
     no: "03",
-    title: "Variations Vespérales",
-    sub: "Ensemble d'orgue de chambre",
-    year: "2023",
-    duration: "09′ 45″",
-    file: "/scores/vesper-variations.pdf",
+    title: "Prélude pour un matin clair",
+    author: "—",
+    composer: "Composition : Clément Portal",
+    file: "/scores/prelude-matin-clair.pdf",
   },
   {
     no: "04",
     title: "Trois Études sur le Plain-chant",
-    sub: "Orgue solo — claviers seuls",
-    year: "2021",
-    duration: "11′ 10″",
-    file: "/scores/three-plainchant-studies.pdf",
+    author: "Mélodies grégoriennes",
+    composer: "Harmonisation : Clément Portal",
+    file: "/scores/etudes-plain-chant.pdf",
   },
   {
     no: "05",
-    title: "Liturgie des Arbres",
-    sub: "Chœur de chambre & orgue",
-    year: "2020",
-    duration: "08′ 30″",
-    file: "/scores/liturgy-of-the-trees.pdf",
+    title: "Méditation sur le Magnificat",
+    author: "—",
+    composer: "Composition : Clément Portal",
+    file: "/scores/meditation-magnificat.pdf",
   },
 ];
 
@@ -75,19 +78,19 @@ function ScoresPage() {
             Catalogue
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl mb-6">
-            Partitions <span className="italic font-normal">publiées</span>.
+            Partitions <span className="italic font-normal">harmonisées</span> &amp; composées.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Un catalogue vivant d'œuvres disponibles pour l'étude et le
-            concert. Les partitions sont fournies au format PDF ; merci de
-            mentionner l'auteur sur tous les programmes.
+            Recueil de partitions pour orgue, mises à disposition au format
+            PDF. Merci de mentionner l'auteur du texte ainsi que
+            l'harmonisateur ou le compositeur sur les programmes.
           </p>
         </header>
 
         <section className="animate-reveal [animation-delay:200ms]">
           <div className="flex items-baseline justify-between mb-8 border-b-2 border-foreground pb-4">
             <h2 className="font-display text-3xl font-bold tracking-tight">
-              Partitions choisies
+              Catalogue
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest hidden sm:block">
               Pour l'étude &amp; le concert
@@ -107,13 +110,10 @@ function ScoresPage() {
                   <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
                     {s.title}
                   </h3>
-                  <p className="text-sm italic opacity-60">{s.sub}</p>
+                  <p className="text-sm italic opacity-60">{s.author}</p>
                 </div>
-                <div className="col-span-6 md:col-span-2 font-mono text-sm">
-                  {s.year}
-                </div>
-                <div className="col-span-6 md:col-span-2 font-mono text-sm tracking-tighter opacity-70">
-                  {s.duration}
+                <div className="col-span-12 md:col-span-4 font-mono text-xs md:text-sm opacity-75">
+                  {s.composer}
                 </div>
                 <div className="col-span-12 md:col-span-2 md:text-right">
                   <a
