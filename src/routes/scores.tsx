@@ -62,7 +62,7 @@ function ScoresPage() {
             Partitions <span className="italic font-normal">harmonisées</span> &amp; composées.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Recueil de partitions pour orgue, mises à disposition au format
+            Catalogue de partitions, mises à disposition au format
             PDF. Merci de mentionner l'auteur du texte ainsi que
             l'harmonisateur ou le compositeur sur les programmes.
           </p>
