@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -23,52 +25,31 @@ export const Route = createFileRoute("/scores")({
 });
 
 type Score = {
-  no: string;
+  id: string;
   title: string;
-  author: string;
+  author: string | null;
   composer: string;
-  file: string;
+  pdf_path: string;
 };
 
-const scores: Score[] = [
-  {
-    no: "01",
-    title: "Répons des Ténèbres",
-    author: "Liturgie du Triduum",
-    composer: "Harmonisation : Clément Portal",
-    file: "/scores/repons-des-tenebres.pdf",
-  },
-  {
-    no: "02",
-    title: "Veni Creator",
-    author: "Raban Maur",
-    composer: "Harmonisation : Clément Portal",
-    file: "/scores/veni-creator.pdf",
-  },
-  {
-    no: "03",
-    title: "Prélude pour un matin clair",
-    author: "—",
-    composer: "Composition : Clément Portal",
-    file: "/scores/prelude-matin-clair.pdf",
-  },
-  {
-    no: "04",
-    title: "Trois Études sur le Plain-chant",
-    author: "Mélodies grégoriennes",
-    composer: "Harmonisation : Clément Portal",
-    file: "/scores/etudes-plain-chant.pdf",
-  },
-  {
-    no: "05",
-    title: "Méditation sur le Magnificat",
-    author: "—",
-    composer: "Composition : Clément Portal",
-    file: "/scores/meditation-magnificat.pdf",
-  },
-];
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+
+function pdfUrl(path: string) {
+  return `${SUPABASE_URL}/storage/v1/object/public/scores/${path}`;
+}
 
 function ScoresPage() {
+  const [scores, setScores] = useState<Score[] | null>(null);
+
+  useEffect(() => {
+    supabase
+      .from("scores")
+      .select("id,title,author,composer,pdf_path")
+      .order("sort_order", { ascending: true })
+      .order("created_at", { ascending: true })
+      .then(({ data }) => setScores(data ?? []));
+  }, []);
+
   return (
     <>
       <SiteHeader />
@@ -97,35 +78,47 @@ function ScoresPage() {
             </span>
           </div>
 
-          <div className="divide-y divide-border">
-            {scores.map((s) => (
-              <article
-                key={s.no}
-                className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
-              >
-                <div className="col-span-2 md:col-span-1 font-mono text-sm opacity-40">
-                  {s.no}
-                </div>
-                <div className="col-span-10 md:col-span-5">
-                  <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm italic opacity-60">{s.author}</p>
-                </div>
-                <div className="col-span-12 md:col-span-4 font-mono text-xs md:text-sm opacity-75">
-                  {s.composer}
-                </div>
-                <div className="col-span-12 md:col-span-2 md:text-right">
-                  <a
-                    href={s.file}
-                    className="inline-block px-4 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
-                  >
-                    Télécharger PDF
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
+          {scores === null ? (
+            <p className="py-12 text-sm font-mono opacity-60">Chargement…</p>
+          ) : scores.length === 0 ? (
+            <p className="py-12 text-sm opacity-60">
+              Aucune partition disponible pour le moment.
+            </p>
+          ) : (
+            <div className="divide-y divide-border">
+              {scores.map((s, i) => (
+                <article
+                  key={s.id}
+                  className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
+                >
+                  <div className="col-span-2 md:col-span-1 font-mono text-sm opacity-40">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="col-span-10 md:col-span-5">
+                    <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
+                      {s.title}
+                    </h3>
+                    {s.author && (
+                      <p className="text-sm italic opacity-60">{s.author}</p>
+                    )}
+                  </div>
+                  <div className="col-span-12 md:col-span-4 font-mono text-xs md:text-sm opacity-75">
+                    {s.composer}
+                  </div>
+                  <div className="col-span-12 md:col-span-2 md:text-right">
+                    <a
+                      href={pdfUrl(s.pdf_path)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-4 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
+                    >
+                      Télécharger PDF
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </section>
       </main>
       <SiteFooter />
