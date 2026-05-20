@@ -11,7 +11,7 @@ export const Route = createFileRoute("/scores")({
       {
         name: "description",
         content:
-          "Catalogue des partitions harmonisées et composées par Clément Portal, librement téléchargeables au format PDF.",
+          "Catalogue de partitions éditées par Clément Portal, librement téléchargeables au format PDF.",
       },
       { property: "og:title", content: "Partitions — Clément Portal" },
       {
@@ -108,9 +108,8 @@ function ScoresPage() {
             Partitions <span className="italic font-normal">harmonisées</span> &amp; composées.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Catalogue de partitions, mises à disposition au format
-            PDF. Merci de mentionner l'auteur du texte ainsi que
-            l'harmonisateur ou le compositeur sur les programmes.
+            Catalogue de partitions éditées par Clément Portal, mises à disposition pour le contexte liturgique.
+            Merci de me prévenir pour tout autre usage.
           </p>
         </header>
 
@@ -120,7 +119,7 @@ function ScoresPage() {
               Catalogue
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest hidden sm:block">
-              Pour l'étude &amp; le concert
+              Pour la liturgie et les concerts spirituels
             </span>
           </div>
 
