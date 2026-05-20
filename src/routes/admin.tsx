@@ -368,6 +368,18 @@ function AdminPage() {
                       <p className="text-xs italic opacity-60">{s.author}</p>
                     )}
                     <p className="text-xs font-mono opacity-70">{s.composer}</p>
+                    {s.labels && s.labels.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {s.labels.map((l) => (
+                          <span
+                            key={l}
+                            className="text-[10px] font-mono uppercase tracking-widest px-1.5 py-0.5 border border-foreground/30"
+                          >
+                            {l}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="col-span-12 md:col-span-6 flex gap-2 md:justify-end flex-wrap">
                     <Link
