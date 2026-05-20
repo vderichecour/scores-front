@@ -293,6 +293,17 @@ function AdminPage() {
             </div>
             <div className="md:col-span-2">
               <label className="block text-xs font-mono uppercase tracking-widest mb-1">
+                Étiquettes (séparées par des virgules)
+              </label>
+              <input
+                value={form.labels}
+                onChange={(e) => setForm({ ...form, labels: e.target.value })}
+                placeholder="Ex : Noël, Marial, Cantique"
+                className="w-full border border-foreground bg-transparent px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-xs font-mono uppercase tracking-widest mb-1">
                 Fichier PDF {form.id && "(laisser vide pour conserver l'actuel)"}
               </label>
               <input
