@@ -160,6 +160,7 @@ function AdminPage() {
         composer: form.composer.trim(),
         sort_order: form.sort_order,
         pdf_path: pdfPath,
+        labels: parseLabels(form.labels),
       };
 
       if (form.id) {
