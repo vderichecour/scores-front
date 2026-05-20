@@ -21,6 +21,7 @@ type Score = {
   composer: string;
   pdf_path: string;
   sort_order: number;
+  labels: string[] | null;
 };
 
 type FormState = {
@@ -30,6 +31,7 @@ type FormState = {
   composer: string;
   sort_order: number;
   pdf_path: string;
+  labels: string;
   file?: File | null;
 };
 
@@ -39,8 +41,19 @@ const emptyForm: FormState = {
   composer: "",
   sort_order: 0,
   pdf_path: "",
+  labels: "",
   file: null,
 };
+
+const parseLabels = (s: string): string[] =>
+  Array.from(
+    new Set(
+      s
+        .split(",")
+        .map((l) => l.trim())
+        .filter(Boolean),
+    ),
+  );
 
 function AdminPage() {
   const navigate = useNavigate();
