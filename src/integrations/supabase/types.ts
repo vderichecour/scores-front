@@ -20,6 +20,7 @@ export type Database = {
           composer: string
           created_at: string
           id: string
+          labels: string[]
           pdf_path: string
           sort_order: number
           title: string
@@ -30,6 +31,7 @@ export type Database = {
           composer: string
           created_at?: string
           id?: string
+          labels?: string[]
           pdf_path: string
           sort_order?: number
           title: string
@@ -40,6 +42,7 @@ export type Database = {
           composer?: string
           created_at?: string
           id?: string
+          labels?: string[]
           pdf_path?: string
           sort_order?: number
           title?: string
