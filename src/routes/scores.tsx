@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -30,6 +30,7 @@ type Score = {
   author: string | null;
   composer: string;
   pdf_path: string;
+  labels: string[] | null;
 };
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
@@ -38,17 +39,62 @@ function pdfUrl(path: string) {
   return `${SUPABASE_URL}/storage/v1/object/public/scores/${path}`;
 }
 
+const ALL = "__all__";
+
 function ScoresPage() {
   const [scores, setScores] = useState<Score[] | null>(null);
+  const [composer, setComposer] = useState<string>(ALL);
+  const [author, setAuthor] = useState<string>(ALL);
+  const [label, setLabel] = useState<string>(ALL);
 
   useEffect(() => {
     supabase
       .from("scores")
-      .select("id,title,author,composer,pdf_path")
+      .select("id,title,author,composer,pdf_path,labels")
       .order("sort_order", { ascending: true })
       .order("created_at", { ascending: true })
-      .then(({ data }) => setScores(data ?? []));
+      .then(({ data }) => setScores((data as Score[] | null) ?? []));
   }, []);
+
+  const composers = useMemo(
+    () =>
+      Array.from(new Set((scores ?? []).map((s) => s.composer).filter(Boolean))).sort(),
+    [scores],
+  );
+  const authors = useMemo(
+    () =>
+      Array.from(
+        new Set((scores ?? []).map((s) => s.author ?? "").filter((a) => a !== "")),
+      ).sort(),
+    [scores],
+  );
+  const labels = useMemo(
+    () =>
+      Array.from(
+        new Set((scores ?? []).flatMap((s) => s.labels ?? [])),
+      ).sort(),
+    [scores],
+  );
+
+  const filtered = useMemo(() => {
+    if (!scores) return null;
+    return scores.filter((s) => {
+      if (composer !== ALL && s.composer !== composer) return false;
+      if (author !== ALL && (s.author ?? "") !== author) return false;
+      if (label !== ALL && !(s.labels ?? []).includes(label)) return false;
+      return true;
+    });
+  }, [scores, composer, author, label]);
+
+  const resetFilters = () => {
+    setComposer(ALL);
+    setAuthor(ALL);
+    setLabel(ALL);
+  };
+  const hasActiveFilter = composer !== ALL || author !== ALL || label !== ALL;
+
+  const selectClass =
+    "w-full border border-foreground bg-transparent px-3 py-2 text-sm font-mono";
 
   return (
     <>
@@ -78,15 +124,81 @@ function ScoresPage() {
             </span>
           </div>
 
+          {scores && scores.length > 0 && (
+            <div className="mb-8 grid gap-3 md:grid-cols-[1fr_1fr_1fr_auto] items-end">
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-widest mb-1 opacity-70">
+                  Compositeur
+                </label>
+                <select
+                  value={composer}
+                  onChange={(e) => setComposer(e.target.value)}
+                  className={selectClass}
+                >
+                  <option value={ALL}>Tous</option>
+                  {composers.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-widest mb-1 opacity-70">
+                  Auteur
+                </label>
+                <select
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  className={selectClass}
+                >
+                  <option value={ALL}>Tous</option>
+                  {authors.map((a) => (
+                    <option key={a} value={a}>
+                      {a}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-widest mb-1 opacity-70">
+                  Étiquette
+                </label>
+                <select
+                  value={label}
+                  onChange={(e) => setLabel(e.target.value)}
+                  className={selectClass}
+                >
+                  <option value={ALL}>Toutes</option>
+                  {labels.map((l) => (
+                    <option key={l} value={l}>
+                      {l}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {hasActiveFilter && (
+                <button
+                  onClick={resetFilters}
+                  className="px-4 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
+                >
+                  Réinitialiser
+                </button>
+              )}
+            </div>
+          )}
+
           {scores === null ? (
             <p className="py-12 text-sm font-mono opacity-60">Chargement…</p>
-          ) : scores.length === 0 ? (
+          ) : filtered && filtered.length === 0 ? (
             <p className="py-12 text-sm opacity-60">
-              Aucune partition disponible pour le moment.
+              {scores.length === 0
+                ? "Aucune partition disponible pour le moment."
+                : "Aucune partition ne correspond à ces filtres."}
             </p>
           ) : (
             <div className="divide-y divide-border">
-              {scores.map((s, i) => (
+              {filtered!.map((s, i) => (
                 <article
                   key={s.id}
                   className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
@@ -100,6 +212,19 @@ function ScoresPage() {
                     </h3>
                     {s.author && (
                       <p className="text-sm italic opacity-60">{s.author}</p>
+                    )}
+                    {s.labels && s.labels.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {s.labels.map((l) => (
+                          <button
+                            key={l}
+                            onClick={() => setLabel(l)}
+                            className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 border border-foreground/30 hover:border-accent hover:text-accent transition-colors"
+                          >
+                            {l}
+                          </button>
+                        ))}
+                      </div>
                     )}
                   </div>
                   <div className="col-span-12 md:col-span-4 font-mono text-xs md:text-sm opacity-75">
