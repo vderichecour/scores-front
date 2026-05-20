@@ -105,7 +105,7 @@ function ScoresPage() {
             Catalogue
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl mb-6">
-            Partitions <span className="italic font-normal">harmonisées</span> &amp; composées.
+            Partitions.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
             Catalogue de partitions éditées par Clément Portal, mises à disposition pour le contexte liturgique.
