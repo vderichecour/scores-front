@@ -306,6 +306,15 @@ function AdminPage() {
               <label className="block text-xs font-mono uppercase tracking-widest mb-1">
                 Fichier PDF {form.id && "(laisser vide pour conserver l'actuel)"}
               </label>
+              <label
+                htmlFor="pdf-input"
+                className="flex items-center gap-2 w-full cursor-pointer border-2 border-dashed border-accent/40 bg-accent/5 px-4 py-3 text-sm hover:bg-accent/10 hover:border-accent/60 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-accent"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                <span className="text-accent font-medium">
+                  {form.file ? form.file.name : "Choisir un fichier PDF"}
+                </span>
+              </label>
               <input
                 id="pdf-input"
                 type="file"
@@ -313,7 +322,7 @@ function AdminPage() {
                 onChange={(e) =>
                   setForm({ ...form, file: e.target.files?.[0] ?? null })
                 }
-                className="w-full text-sm"
+                className="sr-only"
               />
               {form.pdf_path && (
                 <p className="text-xs opacity-60 mt-1 font-mono break-all">
