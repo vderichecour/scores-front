@@ -21,6 +21,7 @@ type Score = {
   composer: string;
   pdf_path: string;
   sort_order: number;
+  labels: string[] | null;
 };
 
 type FormState = {
@@ -30,6 +31,7 @@ type FormState = {
   composer: string;
   sort_order: number;
   pdf_path: string;
+  labels: string;
   file?: File | null;
 };
 
@@ -39,8 +41,19 @@ const emptyForm: FormState = {
   composer: "",
   sort_order: 0,
   pdf_path: "",
+  labels: "",
   file: null,
 };
+
+const parseLabels = (s: string): string[] =>
+  Array.from(
+    new Set(
+      s
+        .split(",")
+        .map((l) => l.trim())
+        .filter(Boolean),
+    ),
+  );
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -101,6 +114,7 @@ function AdminPage() {
       composer: s.composer,
       sort_order: s.sort_order,
       pdf_path: s.pdf_path,
+      labels: (s.labels ?? []).join(", "),
       file: null,
     });
     setError(null);
@@ -146,6 +160,7 @@ function AdminPage() {
         composer: form.composer.trim(),
         sort_order: form.sort_order,
         pdf_path: pdfPath,
+        labels: parseLabels(form.labels),
       };
 
       if (form.id) {
@@ -278,6 +293,17 @@ function AdminPage() {
             </div>
             <div className="md:col-span-2">
               <label className="block text-xs font-mono uppercase tracking-widest mb-1">
+                Étiquettes (séparées par des virgules)
+              </label>
+              <input
+                value={form.labels}
+                onChange={(e) => setForm({ ...form, labels: e.target.value })}
+                placeholder="Ex : Noël, Marial, Cantique"
+                className="w-full border border-foreground bg-transparent px-3 py-2 text-sm"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-xs font-mono uppercase tracking-widest mb-1">
                 Fichier PDF {form.id && "(laisser vide pour conserver l'actuel)"}
               </label>
               <input
@@ -342,6 +368,18 @@ function AdminPage() {
                       <p className="text-xs italic opacity-60">{s.author}</p>
                     )}
                     <p className="text-xs font-mono opacity-70">{s.composer}</p>
+                    {s.labels && s.labels.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {s.labels.map((l) => (
+                          <span
+                            key={l}
+                            className="text-[10px] font-mono uppercase tracking-widest px-1.5 py-0.5 border border-foreground/30"
+                          >
+                            {l}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="col-span-12 md:col-span-6 flex gap-2 md:justify-end flex-wrap">
                     <Link
