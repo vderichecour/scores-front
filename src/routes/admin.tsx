@@ -111,7 +111,7 @@ function AdminPage() {
       title: s.title,
       author: s.author ?? "",
       composer: s.composer,
-      sort_order: s.sort_order,
+
       pdf_path: s.pdf_path,
       labels: (s.labels ?? []).join(", "),
       file: null,
