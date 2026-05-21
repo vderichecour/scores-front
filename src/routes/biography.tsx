@@ -31,7 +31,7 @@ function BiographyPage() {
             Biographie
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
-            Un organiste <span className="italic font-normal">au service</span> du chant.
+            Un musicien <span className="italic font-normal">au service</span> de la liturgie.
           </h1>
         </header>
 
@@ -52,20 +52,21 @@ function BiographyPage() {
           </div>
           <div className="lg:col-span-8 max-w-2xl space-y-6 text-lg leading-relaxed">
             <p className="font-display text-2xl md:text-3xl leading-snug">
-              Clément Portal est organiste. Il consacre une part essentielle
-              de son travail à l'harmonisation de cantiques et à la
-              composition de pièces pour orgue.
+              Clément Portal est organiste et compositeur.
+              Il consacre une part importante
+              de son travail à la composition, l'harmonisation et l'édition de pièces liturgiques.
             </p>
             <p className="opacity-85">
-              Au fil des années passées à la console, il a rassemblé un
-              ensemble de partitions destinées à l'accompagnement liturgique
-              comme à la méditation. Ces partitions, présentées dans le
-              catalogue de ce site, sont librement mises à disposition.
+              Il a étudié l'orgue et l'écriture au conservatoire de Paris avec Frédéric Denis et Stéphane Delplace.
+              Il a ensuite servi dans de nombreuses paroisses parisiennes en tant que chanteur ou organiste (Saint-Roch, Saint-Germain-des-Prés, Notre-Dame-des-blancs-manteaux...) avant de devenir organiste titulaire à Saint-Merry.
+              Cette expérience lui a permis de repérer un problème dans le répertoire liturgique actuel : beaucoup de chants de piètre qualité circulent en ligne, mais rares sont les chants à être bien écrits, bien harmonisés et bien édités.
+              Après avoir harmonisé, édité et composé de nombreuses pièces pour des usages privés, il décide donc de les rendre disponibles au plus grand nombre.
             </p>
             <p className="opacity-85">
-              Son approche cherche à préserver la simplicité mélodique des
-              chants tout en proposant des harmonisations sobres et chantables
-              pour l'assemblée comme pour les chœurs.
+              Il cherche à ce que ces pièces, cantiques ou motets,
+              soient aisées à apprendre pour un chœur amateur disposant de peu de temps de répétition,
+              fassent preuve d'une beauté solennelle qui convienne au cadre liturgique
+              et respectent toutes les règles de l'art de l'harmonie et de l'édition musicale.
             </p>
           </div>
         </section>

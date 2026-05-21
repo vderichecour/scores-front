@@ -70,8 +70,8 @@ function HomePage() {
               Harmoniser, <span className="italic font-normal">composer</span>, partager.
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed max-w-[34ch] text-pretty opacity-90">
-              Organiste, je rassemble ici mes harmonisations et compositions
-              pour orgue, librement mises à disposition.
+              Je rassemble ici mes harmonisations et compositions
+              pour chœur, librement mises à disposition.
             </p>
             <div className="mt-10">
               <Link
@@ -109,14 +109,14 @@ function HomePage() {
           </div>
           <div className="lg:col-span-8 max-w-2xl">
             <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
-              « Une partition est faite pour être jouée. »
+              « La tradition musicale de l’Église universelle constitue un trésor d’une valeur inestimable
+              qui l’emporte sur les autres arts. »
             </p>
             <p className="text-lg leading-relaxed opacity-80">
-              Au fil des années passées à la console, j'ai harmonisé des
-              cantiques anciens et composé quelques pièces pour
-              l'accompagnement liturgique ou la méditation. Ce site rassemble
-              ces partitions, librement téléchargeables, pour qu'elles
-              puissent servir à d'autres organistes, chœurs et paroisses.
+              Au fil des années, j'ai harmonisé des cantiques anciens
+              et composé de nombreuses pièces pour la liturgie.
+              Ce site rassemble ces partitions, librement téléchargeables,
+              pour qu'elles puissent servir à d'autres organistes, chœurs et paroisses.
             </p>
           </div>
         </section>
