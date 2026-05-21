@@ -108,7 +108,7 @@ function ScoresPage() {
             Partitions.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Catalogue de partitions éditées par Clément Portal, mises à disposition pour le contexte liturgique.
+            Catalogue de partitions mises à disposition pour le contexte liturgique.
             Merci de me prévenir pour tout autre usage.
           </p>
         </header>
