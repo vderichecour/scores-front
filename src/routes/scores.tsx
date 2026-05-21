@@ -31,12 +31,21 @@ type Score = {
   composer: string;
   pdf_path: string;
   labels: string[] | null;
+  created_at: string;
 };
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
 
 function pdfUrl(path: string) {
   return `${SUPABASE_URL}/storage/v1/object/public/scores/${path}`;
+}
+
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+  return `${dd}-${mm}-${yyyy}`;
 }
 
 const ALL = "__all__";
@@ -50,11 +59,11 @@ function ScoresPage() {
   useEffect(() => {
     supabase
       .from("scores")
-      .select("id,title,author,composer,pdf_path,labels")
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: true })
+      .select("id,title,author,composer,pdf_path,labels,created_at")
+      .order("created_at", { ascending: false })
       .then(({ data }) => setScores((data as Score[] | null) ?? []));
   }, []);
+
 
   const composers = useMemo(
     () =>
@@ -198,15 +207,16 @@ function ScoresPage() {
             </p>
           ) : (
             <div className="divide-y divide-border">
-              {filtered!.map((s, i) => (
+              {filtered!.map((s) => (
                 <article
                   key={s.id}
                   className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
                 >
-                  <div className="col-span-2 md:col-span-1 font-mono text-sm opacity-40">
-                    {String(i + 1).padStart(2, "0")}
+                  <div className="col-span-3 md:col-span-1 font-mono text-[11px] md:text-xs opacity-40 whitespace-nowrap">
+                    {formatDate(s.created_at)}
                   </div>
-                  <div className="col-span-10 md:col-span-5">
+
+                  <div className="col-span-9 md:col-span-5">
                     <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
                       {s.title}
                     </h3>

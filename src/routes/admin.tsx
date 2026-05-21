@@ -20,8 +20,8 @@ type Score = {
   author: string | null;
   composer: string;
   pdf_path: string;
-  sort_order: number;
   labels: string[] | null;
+  created_at: string;
 };
 
 type FormState = {
@@ -29,7 +29,6 @@ type FormState = {
   title: string;
   author: string;
   composer: string;
-  sort_order: number;
   pdf_path: string;
   labels: string;
   file?: File | null;
@@ -39,11 +38,11 @@ const emptyForm: FormState = {
   title: "",
   author: "",
   composer: "",
-  sort_order: 0,
   pdf_path: "",
   labels: "",
   file: null,
 };
+
 
 const parseLabels = (s: string): string[] =>
   Array.from(
@@ -68,11 +67,11 @@ function AdminPage() {
     const { data, error } = await supabase
       .from("scores")
       .select("*")
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: true });
+      .order("created_at", { ascending: false });
     if (error) setError(error.message);
     else setScores(data ?? []);
   }, []);
+
 
   useEffect(() => {
     const check = async () => {
@@ -112,7 +111,7 @@ function AdminPage() {
       title: s.title,
       author: s.author ?? "",
       composer: s.composer,
-      sort_order: s.sort_order,
+
       pdf_path: s.pdf_path,
       labels: (s.labels ?? []).join(", "),
       file: null,
@@ -158,7 +157,7 @@ function AdminPage() {
         title: form.title.trim(),
         author: form.author.trim() || null,
         composer: form.composer.trim(),
-        sort_order: form.sort_order,
+
         pdf_path: pdfPath,
         labels: parseLabels(form.labels),
       };
@@ -278,19 +277,8 @@ function AdminPage() {
                 className="w-full border border-foreground bg-transparent px-3 py-2 text-sm"
               />
             </div>
-            <div>
-              <label className="block text-xs font-mono uppercase tracking-widest mb-1">
-                Ordre
-              </label>
-              <input
-                type="number"
-                value={form.sort_order}
-                onChange={(e) =>
-                  setForm({ ...form, sort_order: Number(e.target.value) })
-                }
-                className="w-full border border-foreground bg-transparent px-3 py-2 text-sm"
-              />
-            </div>
+
+
             <div className="md:col-span-2">
               <label className="block text-xs font-mono uppercase tracking-widest mb-1">
                 Étiquettes (séparées par des virgules)
