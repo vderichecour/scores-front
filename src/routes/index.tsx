@@ -25,28 +25,37 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const recent = [
-  {
-    no: "01",
-    title: "Répons des Ténèbres",
-    author: "Texte : liturgie du Triduum",
-    composer: "Harmonisation : Clément Portal",
-  },
-  {
-    no: "02",
-    title: "Veni Creator",
-    author: "Texte : Raban Maur",
-    composer: "Harmonisation : Clément Portal",
-  },
-  {
-    no: "03",
-    title: "Prélude pour un matin clair",
-    author: "—",
-    composer: "Composition : Clément Portal",
-  },
-];
+type RecentScore = {
+  id: string;
+  title: string;
+  author: string | null;
+  composer: string;
+  created_at: string;
+};
+
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+  return `${dd}-${mm}-${yyyy}`;
+}
 
 function HomePage() {
+  const [recents, setRecents] = useState<RecentScore[] | null>(null);
+
+  useEffect(() => {
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const isoDate = sevenDaysAgo.toISOString();
+
+    supabase
+      .from("scores")
+      .select("id,title,author,composer,created_at")
+      .gte("created_at", isoDate)
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setRecents((data as RecentScore[] | null) ?? []));
+  }, []);
   return (
     <>
       <SiteHeader />
