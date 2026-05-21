@@ -60,7 +60,7 @@ function ScoresPage() {
     supabase
       .from("scores")
       .select("id,title,author,composer,pdf_path,labels,created_at")
-      .order("created_at", { ascending: false })
+      .order("title", { ascending: true })
       .then(({ data }) => setScores((data as Score[] | null) ?? []));
   }, []);
 
