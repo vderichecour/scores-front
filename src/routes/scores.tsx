@@ -216,7 +216,7 @@ function ScoresPage() {
                     {formatDate(s.created_at)}
                   </div>
 
-                  <div className="col-span-10 md:col-span-5">
+                  <div className="col-span-9 md:col-span-5">
                     <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
                       {s.title}
                     </h3>
