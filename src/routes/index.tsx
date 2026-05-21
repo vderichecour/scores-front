@@ -134,27 +134,37 @@ function HomePage() {
               Tout le catalogue →
             </Link>
           </div>
-          <div className="divide-y divide-border">
-            {recent.map((w) => (
-              <div
-                key={w.no}
-                className="grid grid-cols-12 py-5 items-baseline gap-4"
-              >
-                <div className="col-span-2 sm:col-span-1 font-mono text-sm opacity-40">
-                  {w.no}
+          {recents === null ? (
+            <p className="py-12 text-sm font-mono opacity-60">Chargement…</p>
+          ) : recents.length === 0 ? (
+            <p className="py-12 text-sm opacity-60">
+              Aucune partition récemment ajoutée.
+            </p>
+          ) : (
+            <div className="divide-y divide-border">
+              {recents.map((w, i) => (
+                <div
+                  key={w.id}
+                  className="grid grid-cols-12 py-5 items-baseline gap-4"
+                >
+                  <div className="col-span-2 sm:col-span-1 font-mono text-sm opacity-40">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="col-span-10 sm:col-span-7">
+                    <h3 className="text-xl md:text-2xl font-display font-semibold">
+                      {w.title}
+                    </h3>
+                    <p className="text-sm italic opacity-60">
+                      {w.author ?? "—"}
+                    </p>
+                  </div>
+                  <div className="col-span-12 sm:col-span-4 sm:text-right font-mono text-xs opacity-70">
+                    {w.composer} &middot; {formatDate(w.created_at)}
+                  </div>
                 </div>
-                <div className="col-span-10 sm:col-span-7">
-                  <h3 className="text-xl md:text-2xl font-display font-semibold">
-                    {w.title}
-                  </h3>
-                  <p className="text-sm italic opacity-60">{w.author}</p>
-                </div>
-                <div className="col-span-12 sm:col-span-4 sm:text-right font-mono text-xs opacity-70">
-                  {w.composer}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
       </main>
       <SiteFooter />
