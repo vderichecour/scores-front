@@ -207,14 +207,15 @@ function ScoresPage() {
             </p>
           ) : (
             <div className="divide-y divide-border">
-              {filtered!.map((s, i) => (
+              {filtered!.map((s) => (
                 <article
                   key={s.id}
                   className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
                 >
-                  <div className="col-span-2 md:col-span-1 font-mono text-sm opacity-40">
-                    {String(i + 1).padStart(2, "0")}
+                  <div className="col-span-3 md:col-span-1 font-mono text-[11px] md:text-xs opacity-40 whitespace-nowrap">
+                    {formatDate(s.created_at)}
                   </div>
+
                   <div className="col-span-10 md:col-span-5">
                     <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
                       {s.title}
