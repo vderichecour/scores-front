@@ -20,8 +20,8 @@ type Score = {
   author: string | null;
   composer: string;
   pdf_path: string;
-  sort_order: number;
   labels: string[] | null;
+  created_at: string;
 };
 
 type FormState = {
@@ -29,7 +29,6 @@ type FormState = {
   title: string;
   author: string;
   composer: string;
-  sort_order: number;
   pdf_path: string;
   labels: string;
   file?: File | null;
@@ -39,11 +38,11 @@ const emptyForm: FormState = {
   title: "",
   author: "",
   composer: "",
-  sort_order: 0,
   pdf_path: "",
   labels: "",
   file: null,
 };
+
 
 const parseLabels = (s: string): string[] =>
   Array.from(
