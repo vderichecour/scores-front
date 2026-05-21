@@ -67,11 +67,11 @@ function AdminPage() {
     const { data, error } = await supabase
       .from("scores")
       .select("*")
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: true });
+      .order("created_at", { ascending: false });
     if (error) setError(error.message);
     else setScores(data ?? []);
   }, []);
+
 
   useEffect(() => {
     const check = async () => {
