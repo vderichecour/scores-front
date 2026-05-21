@@ -277,19 +277,8 @@ function AdminPage() {
                 className="w-full border border-foreground bg-transparent px-3 py-2 text-sm"
               />
             </div>
-            <div>
-              <label className="block text-xs font-mono uppercase tracking-widest mb-1">
-                Ordre
-              </label>
-              <input
-                type="number"
-                value={form.sort_order}
-                onChange={(e) =>
-                  setForm({ ...form, sort_order: Number(e.target.value) })
-                }
-                className="w-full border border-foreground bg-transparent px-3 py-2 text-sm"
-              />
-            </div>
+
+
             <div className="md:col-span-2">
               <label className="block text-xs font-mono uppercase tracking-widest mb-1">
                 Étiquettes (séparées par des virgules)
