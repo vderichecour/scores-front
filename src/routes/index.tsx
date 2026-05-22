@@ -30,8 +30,16 @@ type RecentScore = {
   title: string;
   author: string | null;
   composer: string;
+  pdf_path: string;
+  labels: string[] | null;
   created_at: string;
 };
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+
+function pdfUrl(path: string) {
+  return `${SUPABASE_URL}/storage/v1/object/public/scores/${path}`;
+}
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -51,11 +59,12 @@ function HomePage() {
 
     supabase
       .from("scores")
-      .select("id,title,author,composer,created_at")
+      .select("id,title,author,composer,pdf_path,labels,created_at")
       .gte("created_at", isoDate)
       .order("created_at", { ascending: false })
       .then(({ data }) => setRecents((data as RecentScore[] | null) ?? []));
   }, []);
+
   return (
     <>
       <SiteHeader />
