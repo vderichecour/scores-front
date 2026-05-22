@@ -151,28 +151,51 @@ function HomePage() {
             </p>
           ) : (
             <div className="divide-y divide-border">
-              {recents.map((w, i) => (
-                <div
-                  key={w.id}
-                  className="grid grid-cols-12 py-5 items-baseline gap-4"
+              {recents.map((s) => (
+                <article
+                  key={s.id}
+                  className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
                 >
-                  <div className="col-span-2 sm:col-span-1 font-mono text-sm opacity-40">
-                    {String(i + 1).padStart(2, "0")}
+                  <div className="col-span-3 md:col-span-1 font-mono text-[11px] md:text-xs opacity-40 whitespace-nowrap">
+                    {formatDate(s.created_at)}
                   </div>
-                  <div className="col-span-10 sm:col-span-7">
-                    <h3 className="text-xl md:text-2xl font-display font-semibold">
-                      {w.title}
+                  <div className="col-span-9 md:col-span-5">
+                    <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
+                      {s.title}
                     </h3>
-                    <p className="text-sm italic opacity-60">
-                      {w.author ?? "—"}
-                    </p>
+                    {s.author && (
+                      <p className="text-sm italic opacity-60">{s.author}</p>
+                    )}
+                    {s.labels && s.labels.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {s.labels.map((l) => (
+                          <span
+                            key={l}
+                            className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 border border-foreground/30"
+                          >
+                            {l}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <div className="col-span-12 sm:col-span-4 sm:text-right font-mono text-xs opacity-70">
-                    {w.composer} &middot; {formatDate(w.created_at)}
+                  <div className="col-span-12 md:col-span-4 font-mono text-xs md:text-sm opacity-75">
+                    {s.composer}
                   </div>
-                </div>
+                  <div className="col-span-12 md:col-span-2 md:text-right">
+                    <a
+                      href={pdfUrl(s.pdf_path)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-4 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
+                    >
+                      Télécharger PDF
+                    </a>
+                  </div>
+                </article>
               ))}
             </div>
+
           )}
         </section>
       </main>
