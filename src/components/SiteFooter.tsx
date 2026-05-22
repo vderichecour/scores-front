@@ -8,7 +8,7 @@ export function SiteFooter() {
           <h4 className="font-display text-3xl md:text-4xl mb-4">Correspondance</h4>
           <p className="font-mono text-xs uppercase tracking-widest opacity-60 mb-6">
             Pour toute question concernant les partitions, n'hésitez pas à
-            écrire directement.
+            m'écrire.
           </p>
           <Link
             to="/contact"

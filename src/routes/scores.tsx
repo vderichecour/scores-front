@@ -128,7 +128,7 @@ function ScoresPage() {
               Catalogue
             </h2>
             <span className="font-mono text-[10px] uppercase tracking-widest hidden sm:block">
-              Pour la liturgie et les concerts spirituels
+              Pour la liturgie
             </span>
           </div>
 
