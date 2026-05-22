@@ -72,14 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Clément Portal — Organiste & Partitions" },
+      { title: "Clément Portal" },
       {
         name: "description",
         content:
           "Clément Portal, organiste. Partitions harmonisées et composées, librement disponibles au téléchargement.",
       },
       { name: "author", content: "Clément Portal" },
-      { property: "og:title", content: "Clément Portal — Organiste & Partitions" },
+      { property: "og:title", content: "Clément Portal" },
       {
         property: "og:description",
         content:
@@ -87,6 +87,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Clément Portal" },
+      { name: "description", content: "Site de Clément Portal" },
+      { property: "og:description", content: "Site de Clément Portal" },
+      { name: "twitter:description", content: "Site de Clément Portal" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/32c53674-f14c-4f7a-8a76-e5d2476ab1de/id-preview-104f3049--6a1a4769-8ddb-46b6-8183-5863055f2176.lovable.app-1779391868021.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/32c53674-f14c-4f7a-8a76-e5d2476ab1de/id-preview-104f3049--6a1a4769-8ddb-46b6-8183-5863055f2176.lovable.app-1779391868021.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
