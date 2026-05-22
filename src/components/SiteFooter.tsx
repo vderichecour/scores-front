@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 export function SiteFooter() {
   return (
     <footer className="bg-foreground text-background py-16 md:py-20 px-6 md:px-8 mt-32">
@@ -8,12 +10,12 @@ export function SiteFooter() {
             Pour toute question concernant les partitions, n'hésitez pas à
             écrire directement.
           </p>
-          <a
-            href="mailto:clement.portal@gmail.com"
-            className="text-xl md:text-2xl underline decoration-accent decoration-2 underline-offset-8 hover:text-accent transition-colors"
+          <Link
+            to="/contact"
+            className="inline-block text-xl md:text-2xl underline decoration-accent decoration-2 underline-offset-8 hover:text-accent transition-colors"
           >
-            clement.portal@gmail.com
-          </a>
+            Formulaire de contact →
+          </Link>
         </div>
         <div className="text-left md:text-right font-mono text-[10px] uppercase tracking-widest opacity-40 space-y-2">
           <p>© {new Date().getFullYear()} Clément Portal</p>
