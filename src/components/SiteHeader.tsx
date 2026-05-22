@@ -16,6 +16,13 @@ export function SiteHeader() {
             Partitions
           </Link>
           <Link
+            to="/resources"
+            activeProps={{ className: "text-accent" }}
+            className="hover:text-accent transition-colors"
+          >
+            Ressources
+          </Link>
+          <Link
             to="/biography"
             activeProps={{ className: "text-accent" }}
             className="hover:text-accent transition-colors"
