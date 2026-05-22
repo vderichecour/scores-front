@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ScoresRouteImport } from './routes/scores'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BiographyRouteImport } from './routes/biography'
@@ -25,6 +26,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ScoresRoute = ScoresRouteImport.update({
   id: '/scores',
   path: '/scores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/biography': typeof BiographyRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
+  '/resources': typeof ResourcesRoute
   '/scores': typeof ScoresRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/biography': typeof BiographyRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
+  '/resources': typeof ResourcesRoute
   '/scores': typeof ScoresRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/biography': typeof BiographyRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
+  '/resources': typeof ResourcesRoute
   '/scores': typeof ScoresRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/biography'
     | '/contact'
     | '/login'
+    | '/resources'
     | '/scores'
     | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/biography'
     | '/contact'
     | '/login'
+    | '/resources'
     | '/scores'
     | '/sitemap.xml'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/biography'
     | '/contact'
     | '/login'
+    | '/resources'
     | '/scores'
     | '/sitemap.xml'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   BiographyRoute: typeof BiographyRoute
   ContactRoute: typeof ContactRoute
   LoginRoute: typeof LoginRoute
+  ResourcesRoute: typeof ResourcesRoute
   ScoresRoute: typeof ScoresRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/scores'
       fullPath: '/scores'
       preLoaderRoute: typeof ScoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   BiographyRoute: BiographyRoute,
   ContactRoute: ContactRoute,
   LoginRoute: LoginRoute,
+  ResourcesRoute: ResourcesRoute,
   ScoresRoute: ScoresRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
