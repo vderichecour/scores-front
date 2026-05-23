@@ -40,14 +40,6 @@ const ecclesialResources: ResourceItem[] = [
     tags: ["Vatican II", "Constitution", "Réforme liturgique"],
   },
   {
-    title: "Chantez au Seigneur un chant nouveau",
-    author: "Congrégation pour le Culte Divin",
-    description:
-      "Instruction sur les chants à la messe (2019). Replace le chant grégorien et le chant classique au cœur de la liturgie.",
-    url: "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20190325_les-chants-de-la-messe_fr.html",
-    tags: ["Instruction", "Chant à la messe", "Grégorien"],
-  },
-  {
     title: "Tra le sollecitudini",
     author: "Pape Pie X",
     description:
@@ -82,22 +74,6 @@ const referenceWorks: ResourceItem[] = [
     url: "https://www.solesmes.com/",
     tags: ["Grégorien", "Recueil", "Pratique"],
   },
-  {
-    title: "Méthode de piano et d'orgue",
-    author: "Marcel Dupré",
-    description:
-      "Traité pédagogique majeur pour l'organiste. Couvre technique, registration et accompagnement liturgique.",
-    url: "https://fr.wikipedia.org/wiki/Marcel_Dupr%C3%A9",
-    tags: ["Orgue", "Pédagogie", "Technique"],
-  },
-  {
-    title: "L'Art de l'accompagnement du chant grégorien",
-    author: "Dom Joseph Gajard",
-    description:
-      "Guide pratique pour accompagner le chant grégorien à l'orgue. Une référence pour les organistes liturgiques.",
-    url: "https://www.solesmes.com/",
-    tags: ["Orgue", "Grégorien", "Accompagnement"],
-  },
 ];
 
 const onlineResources: ResourceItem[] = [
@@ -107,21 +83,6 @@ const onlineResources: ResourceItem[] = [
       "Base de données collaborative de partitions grégoriennes en format gabc. Permet de générer des partitions prêtes à imprimer.",
     url: "https://gregobase.seldom.it/",
     tags: ["Grégorien", "Partitions", "Collaboratif"],
-  },
-  {
-    title: "CANTUS",
-    description:
-      "Base de données universitaire des chants grégoriens et médiévaux. Référence scientifique pour les mélodies et les textes.",
-    url: "https://cantusdatabase.org/",
-    tags: ["Grégorien", "Recherche", "Base de données"],
-  },
-  {
-    title: "Musique Sacrée",
-    author: "Chantres de la cathédrale de Paris",
-    description:
-      "Portail francophone sur la musique liturgique : articles, partitions, actualité du chant grégorien et de la polyphonie.",
-    url: "https://www.musiquesacre.org/",
-    tags: ["Portail", "Actualité", "Grégorien"],
   },
 ];
 

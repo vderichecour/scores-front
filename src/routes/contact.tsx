@@ -4,7 +4,6 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import handsOn from "@/assets/hands-on.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -63,25 +62,15 @@ function ContactPage() {
   };
 
   const inputClass =
-    "w-full border border-foreground bg-background/90 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent";
+    "w-full border border-foreground bg-transparent px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent";
 
   return (
     <>
       <SiteHeader />
-      <main className="relative isolate min-h-[calc(100svh-4rem)]">
-        <div
-          className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${handsOn})` }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-background/92 via-background/78 to-background/55"
-          aria-hidden
-        />
-        <div className="relative max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
+      <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <header className="mb-16 md:mb-20 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Correspondance
+            Contact
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
             Écrire.
@@ -91,7 +80,7 @@ function ContactPage() {
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 animate-reveal [animation-delay:200ms]">
           <div className="lg:col-span-7">
             {status === "sent" ? (
-              <div className="border border-accent/40 bg-background/90 p-8">
+              <div className="border border-accent/40 bg-accent/5 p-8">
                 <p className="font-display text-2xl mb-2">Message envoyé.</p>
                 <p className="text-sm opacity-80 mb-6">
                   Merci pour votre message. Une réponse vous parviendra dès que possible.
@@ -181,7 +170,6 @@ function ContactPage() {
             </p>
           </aside>
         </section>
-        </div>
       </main>
       <SiteFooter />
     </>
