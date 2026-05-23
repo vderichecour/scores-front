@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import organPipes from "@/assets/organ-pipes.jpg";
+import clementOrgan from "@/assets/clement-organ.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -70,13 +70,10 @@ function HomePage() {
       <SiteHeader />
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
         {/* Hero */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 mb-24 md:mb-40 items-center">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 mb-12 md:mb-16 items-center">
           <div className="lg:col-span-7 animate-reveal [animation-delay:200ms]">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-              Partitions — Orgue
-            </p>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black mb-8 leading-[0.9] text-balance">
-              Harmoniser, <span className="italic font-normal">composer</span>, partager.
+              Harmoniser, composer, partager.
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed max-w-[34ch] text-pretty opacity-90">
               Je rassemble ici mes harmonisations et compositions
@@ -94,40 +91,28 @@ function HomePage() {
           <div className="lg:col-span-5 animate-reveal [animation-delay:400ms]">
             <figure>
               <img
-                src={organPipes}
-                alt="Tuyaux d'orgue dans une église"
+                src={clementOrgan}
+                alt="Clément Portal à l'orgue de tribune de Saint-Merry"
                 width={800}
                 height={1024}
                 className="w-full aspect-[4/5] object-cover rounded-sm border border-border"
               />
-              <figcaption className="mt-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                Fig. 01 — Orgue de tribune
-              </figcaption>
             </figure>
           </div>
         </section>
 
         {/* Intro */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 mb-24 md:mb-32 animate-reveal">
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-32">
-              <span className="font-mono text-xs uppercase tracking-tighter text-accent border-b border-accent/30 pb-1">
-                Démarche
-              </span>
-            </div>
-          </div>
-          <div className="lg:col-span-8 max-w-2xl">
-            <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
-              « La tradition musicale de l’Église universelle constitue un trésor d’une valeur inestimable
-              qui l’emporte sur les autres arts. »
-            </p>
-            <p className="text-lg leading-relaxed opacity-80">
-              Au fil des années, j'ai harmonisé des cantiques anciens
-              et composé de nombreuses pièces pour la liturgie.
-              Ce site rassemble ces partitions, librement téléchargeables,
-              pour qu'elles puissent servir à d'autres organistes, chœurs et paroisses.
-            </p>
-          </div>
+        <section className="mb-24 md:mb-32 animate-reveal">
+          <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
+            « La tradition musicale de l’Église universelle constitue un trésor d’une valeur inestimable
+            qui l’emporte sur les autres arts. »
+          </p>
+          <p className="text-lg leading-relaxed opacity-80">
+            Au fil des années, j'ai harmonisé des cantiques anciens
+            et composé de nombreuses pièces pour la liturgie.
+            Ce site rassemble ces partitions, librement téléchargeables,
+            pour qu'elles puissent servir à d'autres organistes, chœurs et paroisses.
+          </p>
         </section>
 
         {/* Récents */}

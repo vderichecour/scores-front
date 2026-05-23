@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import clementChurch from "@/assets/clement-church.jpg";
 
 export const Route = createFileRoute("/biography")({
   head: () => ({
@@ -31,22 +32,33 @@ function BiographyPage() {
             Biographie
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
-            Un musicien <span className="italic font-normal">au service</span> de la liturgie.
+            Un musicien au service de la liturgie.
           </h1>
         </header>
 
+        <figure className="mb-12 md:mb-16 animate-reveal max-w-md md:max-w-lg mx-auto">
+          <img
+            src={clementChurch}
+            alt="Clément Portal dans l'église de Saint-Merry"
+            width={1024}
+            height={1024}
+            className="w-full h-auto rounded-sm border border-border"
+          />
+        </figure>
+
+        
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 animate-reveal">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32 space-y-2">
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                Instrument
+                Date de naissance
               </p>
-              <p className="font-display text-xl italic">Orgue</p>
+              <p className="font-display text-xl italic">19 mars 1999</p>
               <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground pt-4">
-                Activité
+                Lieu de résidence
               </p>
               <p className="font-display text-xl italic">
-                Harmonisations &amp; compositions
+                Orléans
               </p>
             </div>
           </div>

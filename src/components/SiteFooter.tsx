@@ -5,10 +5,10 @@ export function SiteFooter() {
     <footer className="bg-foreground text-background py-16 md:py-20 px-6 md:px-8 mt-32">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-12 md:items-end">
         <div className="max-w-md">
-          <h4 className="font-display text-3xl md:text-4xl mb-4">Correspondance</h4>
+          <h4 className="font-display text-3xl md:text-4xl mb-4">Contact</h4>
           <p className="font-mono text-xs uppercase tracking-widest opacity-60 mb-6">
             Pour toute question concernant les partitions, n'hésitez pas à
-            écrire directement.
+            m'écrire.
           </p>
           <Link
             to="/contact"
