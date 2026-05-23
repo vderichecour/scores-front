@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import clementChurch from "@/assets/clement-church.jpg";
+import clementPortal4 from "@/assets/clement-portal-4.jpg";
 
 export const Route = createFileRoute("/biography")({
   head: () => ({
@@ -80,6 +81,40 @@ function BiographyPage() {
               fassent preuve d'une beauté solennelle qui convienne au cadre liturgique
               et respectent toutes les règles de l'art de l'harmonie et de l'édition musicale.
             </p>
+          </div>
+        </section>
+
+        <section className="mt-24 md:mt-32 border-t border-border pt-16 md:pt-24 animate-reveal">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-10 md:mb-12">
+            Démarche
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
+            <div className="lg:col-span-7 space-y-6 text-lg leading-relaxed">
+              <p className="font-display text-2xl md:text-3xl leading-snug italic">
+                « La tradition musicale de l'Église universelle constitue un trésor d'une valeur
+                inestimable qui l'emporte sur les autres arts. »
+              </p>
+              <p className="opacity-85">
+                Au fil des années, j'ai harmonisé des cantiques anciens et composé de nombreuses
+                pièces pour la liturgie. Ce site rassemble ces partitions, librement
+                téléchargeables, pour qu'elles puissent servir à d'autres organistes, chœurs et
+                paroisses.
+              </p>
+              <p className="opacity-85">
+                Chaque pièce vise à être accessible à un chœur amateur, tout en conservant une
+                beauté solennelle adaptée au cadre liturgique et le respect des règles de
+                l'harmonie et de l'édition musicale.
+              </p>
+            </div>
+            <figure className="lg:col-span-5">
+              <img
+                src={clementPortal4}
+                alt="Mains de Clément Portal sur les claviers d'un orgue"
+                width={800}
+                height={1200}
+                className="w-full h-auto rounded-sm border border-border"
+              />
+            </figure>
           </div>
         </section>
       </main>
