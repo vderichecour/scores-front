@@ -63,7 +63,7 @@ export type Database = {
           id?: string
           labels?: string[]
           pdf_path: string
-          slug: string
+          slug?: string
           sort_order?: number
           title: string
           updated_at?: string
