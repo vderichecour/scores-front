@@ -46,9 +46,11 @@ export type Database = {
           author: string | null
           composer: string
           created_at: string
+          description: string | null
           id: string
           labels: string[]
           pdf_path: string
+          slug: string
           sort_order: number
           title: string
           updated_at: string
@@ -57,9 +59,11 @@ export type Database = {
           author?: string | null
           composer: string
           created_at?: string
+          description?: string | null
           id?: string
           labels?: string[]
           pdf_path: string
+          slug?: string
           sort_order?: number
           title: string
           updated_at?: string
@@ -68,9 +72,11 @@ export type Database = {
           author?: string | null
           composer?: string
           created_at?: string
+          description?: string | null
           id?: string
           labels?: string[]
           pdf_path?: string
+          slug?: string
           sort_order?: number
           title?: string
           updated_at?: string
@@ -110,6 +116,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      slugify: { Args: { input: string }; Returns: string }
     }
     Enums: {
       app_role: "admin"
