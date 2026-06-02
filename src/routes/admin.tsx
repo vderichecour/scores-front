@@ -298,6 +298,18 @@ function AdminPage() {
 
             <div className="md:col-span-2">
               <label className="block text-xs font-mono uppercase tracking-widest mb-1">
+                Présentation (paragraphe explicatif)
+              </label>
+              <textarea
+                value={form.description}
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                rows={5}
+                placeholder="Contexte, usage liturgique, particularités…"
+                className="w-full border border-foreground bg-transparent px-3 py-2 text-sm font-sans"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-xs font-mono uppercase tracking-widest mb-1">
                 Étiquettes (séparées par des virgules)
               </label>
               <input
