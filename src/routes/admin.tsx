@@ -409,7 +409,8 @@ function AdminPage() {
                   </div>
                   <div className="col-span-12 md:col-span-6 flex gap-2 md:justify-end flex-wrap">
                     <Link
-                      to="/scores"
+                      to="/scores/$slug"
+                      params={{ slug: s.slug }}
                       className="text-[11px] font-mono uppercase tracking-widest underline opacity-70 hover:opacity-100"
                     >
                       Voir
