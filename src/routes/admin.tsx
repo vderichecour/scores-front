@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { slugify } from "@/lib/slug";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -16,11 +17,13 @@ export const Route = createFileRoute("/admin")({
 
 type Score = {
   id: string;
+  slug: string;
   title: string;
   author: string | null;
   composer: string;
   pdf_path: string;
   labels: string[] | null;
+  description: string | null;
   created_at: string;
 };
 
@@ -31,6 +34,7 @@ type FormState = {
   composer: string;
   pdf_path: string;
   labels: string;
+  description: string;
   file?: File | null;
 };
 
@@ -40,6 +44,7 @@ const emptyForm: FormState = {
   composer: "",
   pdf_path: "",
   labels: "",
+  description: "",
   file: null,
 };
 
@@ -111,9 +116,9 @@ function AdminPage() {
       title: s.title,
       author: s.author ?? "",
       composer: s.composer,
-
       pdf_path: s.pdf_path,
       labels: (s.labels ?? []).join(", "),
+      description: s.description ?? "",
       file: null,
     });
     setError(null);
@@ -153,13 +158,15 @@ function AdminPage() {
       }
       if (!pdfPath) throw new Error("Un PDF est requis.");
 
+      const title = form.title.trim();
+      const baseSlug = slugify(title) || "partition";
       const payload = {
-        title: form.title.trim(),
+        title,
         author: form.author.trim() || null,
         composer: form.composer.trim(),
-
         pdf_path: pdfPath,
         labels: parseLabels(form.labels),
+        description: form.description.trim() || null,
       };
 
       if (form.id) {
@@ -169,7 +176,17 @@ function AdminPage() {
           .eq("id", form.id);
         if (updErr) throw updErr;
       } else {
-        const { error: insErr } = await supabase.from("scores").insert(payload);
+        // Ensure slug uniqueness with a short suffix on collision
+        let slug = baseSlug;
+        const { data: existing } = await supabase
+          .from("scores")
+          .select("slug")
+          .eq("slug", baseSlug)
+          .maybeSingle();
+        if (existing) slug = `${baseSlug}-${crypto.randomUUID().slice(0, 6)}`;
+        const { error: insErr } = await supabase
+          .from("scores")
+          .insert({ ...payload, slug });
         if (insErr) throw insErr;
       }
       resetForm();
