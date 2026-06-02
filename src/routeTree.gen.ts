@@ -17,6 +17,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BiographyRouteImport } from './routes/biography'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ScoresSlugRouteImport } from './routes/scores.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -58,6 +59,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScoresSlugRoute = ScoresSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ScoresRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,8 +72,9 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
-  '/scores': typeof ScoresRoute
+  '/scores': typeof ScoresRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/scores/$slug': typeof ScoresSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +83,9 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
-  '/scores': typeof ScoresRoute
+  '/scores': typeof ScoresRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/scores/$slug': typeof ScoresSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +95,9 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
-  '/scores': typeof ScoresRoute
+  '/scores': typeof ScoresRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/scores/$slug': typeof ScoresSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/scores'
     | '/sitemap.xml'
+    | '/scores/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/scores'
     | '/sitemap.xml'
+    | '/scores/$slug'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/scores'
     | '/sitemap.xml'
+    | '/scores/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,7 +142,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LoginRoute: typeof LoginRoute
   ResourcesRoute: typeof ResourcesRoute
-  ScoresRoute: typeof ScoresRoute
+  ScoresRoute: typeof ScoresRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -192,8 +204,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scores/$slug': {
+      id: '/scores/$slug'
+      path: '/$slug'
+      fullPath: '/scores/$slug'
+      preLoaderRoute: typeof ScoresSlugRouteImport
+      parentRoute: typeof ScoresRoute
+    }
   }
 }
+
+interface ScoresRouteChildren {
+  ScoresSlugRoute: typeof ScoresSlugRoute
+}
+
+const ScoresRouteChildren: ScoresRouteChildren = {
+  ScoresSlugRoute: ScoresSlugRoute,
+}
+
+const ScoresRouteWithChildren =
+  ScoresRoute._addFileChildren(ScoresRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -202,9 +232,19 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LoginRoute: LoginRoute,
   ResourcesRoute: ResourcesRoute,
-  ScoresRoute: ScoresRoute,
+  ScoresRoute: ScoresRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
