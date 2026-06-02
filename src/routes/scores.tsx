@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -26,6 +26,7 @@ export const Route = createFileRoute("/scores")({
 
 type Score = {
   id: string;
+  slug: string;
   title: string;
   author: string | null;
   composer: string;
@@ -59,7 +60,7 @@ function ScoresPage() {
   useEffect(() => {
     supabase
       .from("scores")
-      .select("id,title,author,composer,pdf_path,labels,created_at")
+      .select("id,slug,title,author,composer,pdf_path,labels,created_at")
       .order("title", { ascending: true })
       .then(({ data }) => setScores((data as Score[] | null) ?? []));
   }, []);
