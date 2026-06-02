@@ -218,7 +218,9 @@ function ScoresPage() {
 
                   <div className="col-span-9 md:col-span-5">
                     <h3 className="text-xl md:text-2xl font-display font-semibold group-hover:text-accent transition-colors">
-                      {s.title}
+                      <Link to="/scores/$slug" params={{ slug: s.slug }} className="hover:underline">
+                        {s.title}
+                      </Link>
                     </h3>
                     {s.author && (
                       <p className="text-sm italic opacity-60">{s.author}</p>
