@@ -11,12 +11,12 @@ export const Route = createFileRoute("/biography")({
       {
         name: "description",
         content:
-          "Clément Portal, organiste : parcours, formation, harmonisations et compositions pour orgue.",
+          "Clément Portal, organiste et compositeur : parcours, formation, harmonisations et compositions.",
       },
       { property: "og:title", content: "Biographie — Clément Portal" },
       {
         property: "og:description",
-        content: "Organiste, harmonisateur et compositeur.",
+        content: "Organiste et compositeur.",
       },
     ],
   }),
@@ -66,20 +66,17 @@ function BiographyPage() {
           <div className="lg:col-span-8 max-w-2xl space-y-6 text-lg leading-relaxed">
             <p className="font-display text-2xl md:text-3xl leading-snug">
               Clément Portal est organiste et compositeur.
-              Il consacre une part importante
-              de son travail à la composition, l'harmonisation et l'édition de pièces liturgiques.
             </p>
             <p className="opacity-85">
-              Il a étudié l'orgue et l'écriture au conservatoire de Paris avec Frédéric Denis et Stéphane Delplace.
-              Il a ensuite servi dans de nombreuses paroisses parisiennes en tant que chanteur ou organiste (Saint-Roch, Saint-Germain-des-Prés, Notre-Dame-des-blancs-manteaux...) avant de devenir organiste titulaire à Saint-Merry.
-              Cette expérience lui a permis de repérer un problème dans le répertoire liturgique actuel : beaucoup de chants de piètre qualité circulent en ligne, mais rares sont les chants à être bien écrits, bien harmonisés et bien édités.
-              Après avoir harmonisé, édité et composé de nombreuses pièces pour des usages privés, il décide donc de les rendre disponibles au plus grand nombre.
+              Il a étudié l'orgue et l'écriture au conservatoire de Paris avec entre autres Frédéric Denis et Stéphane Delplace.
+              Il a servi dans plusieurs paroisses parisiennes (Saint-Roch, Saint-Sulpice, Notre-Dame-des-Blancs-Manteaux...) avant de devenir organiste titulaire à Saint-Merry.
+              Résidant actuellement à Orléans, il accompagne la messe dominicale à l’église Notre-Dame-de-Recouvrance et remplace ponctuellement à la cathédrale.
             </p>
             <p className="opacity-85">
-              Il cherche à ce que ces pièces, cantiques ou motets,
-              soient aisées à apprendre pour un chœur amateur disposant de peu de temps de répétition,
-              fassent preuve d'une beauté solennelle qui convienne au cadre liturgique
-              et respectent toutes les règles de l'art de l'harmonie et de l'édition musicale.
+             Il a aussi étudié le chant grégorien auprès de l’Ecole du Chœur grégorien de Paris
+              et a chanté plusieurs années à la schola de la paroisse Saint-Roch de Paris.
+              Il vient d’être nommé lauréat du concours de composition organisé par Canticum Fidei
+              et verra donc trois de ses compositions enregistrées dans le prochain album de l’association.
             </p>
           </div>
         </section>
@@ -91,19 +88,35 @@ function BiographyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
             <div className="lg:col-span-7 space-y-6 text-lg leading-relaxed">
               <p className="font-display text-2xl md:text-3xl leading-snug italic">
-                « La tradition musicale de l'Église universelle constitue un trésor d'une valeur
-                inestimable qui l'emporte sur les autres arts. »
+                « Il est tout à fait souhaitable que les organistes ne soient pas seulement experts dans le jeu de l'instrument qui leur est confié ;
+                mais ils doivent connaître et pénétrer intimement l'esprit de la liturgie pour qu'en exerçant leur fonction, même dans l'improvisation,
+                ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
               </p>
               <p className="opacity-85">
-                Au fil des années, j'ai harmonisé des cantiques anciens et composé de nombreuses
-                pièces pour la liturgie. Ce site rassemble ces partitions, librement
-                téléchargeables, pour qu'elles puissent servir à d'autres organistes, chœurs et
-                paroisses.
+                Comme un grand nombre de musiciens d’Eglise, j’ai constaté de nombreux défauts dans les partitions chantées par la plupart des paroisses de France :
+                harmonisations déficientes ne respectant pas les règles élémentaires de la musique, prosodies douteuses, éditions de piètre qualité, etc.
               </p>
               <p className="opacity-85">
-                Chaque pièce vise à être accessible à un chœur amateur, tout en conservant une
-                beauté solennelle adaptée au cadre liturgique et le respect des règles de
-                l'harmonie et de l'édition musicale.
+                Plutôt que de m’en désoler, j’ai décidé de me mettre à l’ouvrage : j’ai d’une part progressivement réédité d’anciens cantiques tombés en désuétude,
+                d’autre part réécrit les chants de bonne qualité méritant une meilleure harmonie et enfin composé des pièces originales.
+                Ces nouvelles partitions sont chantées depuis plusieurs années à la paroisse Saint-Roch de Paris.
+              </p>
+              <p className="opacity-85">
+                J’ai donc résolu de mettre le résultat des efforts fournis à la disposition du plus grand nombre en publiant ces partitions sur un site internet dédié.
+                Mon objectif est de créer un répertoire de chants, déjà connus ou non, mais toujours irréprochables aux points de vue des paroles, de la musique et de la mise en page.
+              </p>
+              <p className="opacity-85">
+                Mon objectif lors de l’harmonisation et la composition des cantiques populaires a été de garder une noble simplicité,
+                de manière que l’assemblée ne soit pas découragée de chanter par des accords inattendus et que le chœur puisse maîtriser la partition avec peu de temps de répétition.
+                Toutes les partitions sont à quatre voix, mais elles peuvent bien sûr être chantées par un chantre seul accompagné par un orgue.
+              </p>
+              <p className="opacity-85">
+                Ce site contient aussi des motets, qui restent de même toujours brefs et aisés à apprendre par un chœur amateur.
+                Ils font en revanche preuve d’une grande diversité dans leurs textes, chaque temps liturgique ayant ses motets correspondants.
+                Ils pourront de la sorte rejoindre rapidement le répertoire d’un grand nombre de paroisses.
+              </p>
+              <p className="opacity-85">
+                J’espère ainsi avoir œuvré à « la gloire de Dieu et la sanctification des fidèles » !
               </p>
             </div>
             <figure className="lg:col-span-5">
