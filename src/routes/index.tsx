@@ -98,6 +98,9 @@ function HomePage() {
                 height={1024}
                 className="w-full aspect-[4/5] object-cover rounded-sm border border-border"
               />
+              <figcaption className="mt-2 text-xs opacity-50 text-right italic">
+                Photo : Caroline Dauger
+              </figcaption>
             </figure>
           </div>
         </section>
