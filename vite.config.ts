@@ -11,7 +11,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const gandiStatic = process.env.GANDI_STATIC === "1";
 
 export default defineConfig({
-  ...(gandiStatic ? { cloudflare: false } : {}),
+  ...(gandiStatic ? { nitro: false } : {}),
   tanstackStart: {
     server: { entry: "server" },
     ...(gandiStatic
