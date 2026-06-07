@@ -8,7 +8,7 @@ import clementOrgan from "@/assets/clement-organ.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Clément Portal — Organiste & Partitions" },
+      { title: "Clément Portal — Partitions liturgiques" },
       {
         name: "description",
         content:
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Partitions harmonisées et composées par Clément Portal, organiste.",
+          "Partitions harmonisées et composées par Clément Portal, organiste & compositeur.",
       },
     ],
   }),
@@ -77,8 +77,8 @@ function HomePage() {
               Harmoniser, composer, partager.
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed max-w-[34ch] text-pretty opacity-90">
-              Je rassemble ici mes harmonisations et compositions
-              pour chœur, librement mises à disposition.
+              Je rassemble ici mes harmonisations et compositions liturgiques,
+              librement mises à disposition.
             </p>
             <div className="mt-10">
               <Link
@@ -109,10 +109,15 @@ function HomePage() {
             qui l’emporte sur les autres arts. »
           </p>
           <p className="text-lg leading-relaxed opacity-80">
-            Au fil des années, j'ai harmonisé des cantiques anciens
-            et composé de nombreuses pièces pour la liturgie.
-            Ce site rassemble ces partitions, librement téléchargeables,
-            pour qu'elles puissent servir à d'autres organistes, chœurs et paroisses.
+            Soyez les bienvenus sur ce site !
+          </p>
+          <p className="text-lg leading-relaxed opacity-80">
+            Vous y trouverez de nombreuses partitions de musique liturgique que j’ai éditées, harmonisées ou composées.
+            N’hésitez pas à les télécharger, à vous en servir et à en parler autour de vous !
+            Veuillez cependant me prévenir si vous comptez les utiliser dans un contexte autre que liturgique.
+          </p>
+          <p className="text-lg leading-relaxed opacity-80">
+            Vous pourrez aussi y trouver des liens vers de nombreux documents utiles et que tout musicien liturgique devrait lire !
           </p>
         </section>
 
