@@ -10,23 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ScoresRouteImport } from './routes/scores'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BiographyRouteImport } from './routes/biography'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ScoresIndexRouteImport } from './routes/scores.index'
 import { Route as ScoresSlugRouteImport } from './routes/scores.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ScoresRoute = ScoresRouteImport.update({
-  id: '/scores',
-  path: '/scores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -59,6 +54,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScoresIndexRoute = ScoresIndexRouteImport.update({
+  id: '/scores/',
+  path: '/scores/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScoresSlugRoute = ScoresSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -72,9 +72,9 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
-  '/scores': typeof ScoresRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/scores/$slug': typeof ScoresSlugRoute
+  '/scores/': typeof ScoresIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,9 +83,9 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
-  '/scores': typeof ScoresRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/scores/$slug': typeof ScoresSlugRoute
+  '/scores': typeof ScoresIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,9 +95,9 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
-  '/scores': typeof ScoresRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/scores/$slug': typeof ScoresSlugRoute
+  '/scores/': typeof ScoresIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -108,9 +108,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/login'
     | '/resources'
-    | '/scores'
     | '/sitemap.xml'
     | '/scores/$slug'
+    | '/scores/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -119,9 +119,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/login'
     | '/resources'
-    | '/scores'
     | '/sitemap.xml'
     | '/scores/$slug'
+    | '/scores'
   id:
     | '__root__'
     | '/'
@@ -130,9 +130,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/login'
     | '/resources'
-    | '/scores'
     | '/sitemap.xml'
     | '/scores/$slug'
+    | '/scores/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -142,8 +142,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   LoginRoute: typeof LoginRoute
   ResourcesRoute: typeof ResourcesRoute
-  ScoresRoute: typeof ScoresRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ScoresIndexRoute: typeof ScoresIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -153,13 +153,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/scores': {
-      id: '/scores'
-      path: '/scores'
-      fullPath: '/scores'
-      preLoaderRoute: typeof ScoresRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -204,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scores/': {
+      id: '/scores/'
+      path: '/scores'
+      fullPath: '/scores/'
+      preLoaderRoute: typeof ScoresIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scores/$slug': {
       id: '/scores/$slug'
       path: '/$slug'
@@ -214,17 +214,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface ScoresRouteChildren {
-  ScoresSlugRoute: typeof ScoresSlugRoute
-}
-
-const ScoresRouteChildren: ScoresRouteChildren = {
-  ScoresSlugRoute: ScoresSlugRoute,
-}
-
-const ScoresRouteWithChildren =
-  ScoresRoute._addFileChildren(ScoresRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
@@ -232,9 +221,19 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   LoginRoute: LoginRoute,
   ResourcesRoute: ResourcesRoute,
-  ScoresRoute: ScoresRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ScoresIndexRoute: ScoresIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
