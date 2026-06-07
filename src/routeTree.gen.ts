@@ -60,9 +60,9 @@ const ScoresIndexRoute = ScoresIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScoresSlugRoute = ScoresSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ScoresRoute,
+  id: '/scores/$slug',
+  path: '/scores/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -143,6 +143,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ScoresSlugRoute: typeof ScoresSlugRoute
   ScoresIndexRoute: typeof ScoresIndexRoute
 }
 
@@ -206,10 +207,10 @@ declare module '@tanstack/react-router' {
     }
     '/scores/$slug': {
       id: '/scores/$slug'
-      path: '/$slug'
+      path: '/scores/$slug'
       fullPath: '/scores/$slug'
       preLoaderRoute: typeof ScoresSlugRouteImport
-      parentRoute: typeof ScoresRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -222,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ScoresSlugRoute: ScoresSlugRoute,
   ScoresIndexRoute: ScoresIndexRoute,
 }
 export const routeTree = rootRouteImport
