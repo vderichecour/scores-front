@@ -73,7 +73,7 @@ function ContactPage() {
             Contact
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
-            Écrire.
+            M'écrire.
           </h1>
         </header>
 
@@ -164,9 +164,12 @@ function ContactPage() {
 
           <aside className="lg:col-span-5 border-l-0 lg:border-l lg:pl-12 border-border">
             <p className="text-lg leading-relaxed opacity-85">
-              Pour toute question sur une partition, demande
-              d'harmonisation ou simplement un retour d'expérience après
-              avoir joué l'une de ces pièces, n'hésitez pas à m'écrire.
+              Pour toute remarque ou question sur une partition,
+              demande d'harmonisation ou un simple commentaire à me faire,
+              n'hésitez pas à m'écrire.
+            </p>
+            <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
+              « Dans l'essentiel, l'unité ; dans les questions douteuses, la liberté ; en tout, la charité. »
             </p>
           </aside>
         </section>
