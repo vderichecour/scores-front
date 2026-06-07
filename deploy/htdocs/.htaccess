@@ -1,0 +1,24 @@
+# SPA routing for TanStack Start static build (Apache on Gandi PHP hosting).
+# Serve existing files/directories as-is; otherwise fall back to index.html.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not rewrite real files or directories (assets, robots.txt, sitemap.xml…)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Cache static assets; keep HTML fresh
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|jpg|jpeg|png|gif|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
