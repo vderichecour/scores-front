@@ -8,8 +8,19 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
+const gandiStatic = process.env.GANDI_STATIC === "1";
+
 export default defineConfig({
+  ...(gandiStatic ? { cloudflare: false } : {}),
   tanstackStart: {
     server: { entry: "server" },
+    ...(gandiStatic
+      ? {
+          spa: {
+            enabled: true,
+            prerender: { outputPath: "/index.html" },
+          },
+        }
+      : {}),
   },
 });
