@@ -163,28 +163,35 @@ function ScoreDetailPage() {
             <h2 className="font-mono text-[10px] uppercase tracking-[0.25em] opacity-60">
               Partition
             </h2>
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={async () => {
+                try {
+                  const res = await fetch(url);
+                  const blob = await res.blob();
+                  const blobUrl = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = blobUrl;
+                  a.download = `${score.title}.pdf`;
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+                } catch {
+                  window.open(url, "_blank", "noopener,noreferrer");
+                }
+              }}
               className="px-5 py-3 bg-foreground text-background text-[11px] font-mono uppercase tracking-widest hover:bg-accent transition-colors"
             >
               Télécharger le PDF
-            </a>
+            </button>
           </div>
           <div className="border border-border bg-muted/20 aspect-[3/4] w-full overflow-hidden">
-            <object
-              data={url}
-              type="application/pdf"
+            <iframe
+              src={url}
+              title={`Aperçu — ${score.title}`}
               className="w-full h-full"
-            >
-              <div className="p-8 text-sm">
-                Aperçu indisponible.{" "}
-                <a href={url} target="_blank" rel="noopener noreferrer" className="underline">
-                  Ouvrir le PDF
-                </a>
-              </div>
-            </object>
+            />
           </div>
         </section>
       </main>
