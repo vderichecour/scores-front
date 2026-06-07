@@ -165,8 +165,7 @@ function ScoreDetailPage() {
             </h2>
             <a
               href={url}
-              target="_blank"
-              rel="noopener noreferrer"
+              download={`${score.slug}.pdf`}
               className="px-5 py-3 bg-foreground text-background text-[11px] font-mono uppercase tracking-widest hover:bg-accent transition-colors"
             >
               Télécharger le PDF
