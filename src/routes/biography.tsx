@@ -70,11 +70,11 @@ function BiographyPage() {
             <p className="opacity-85">
               Il a étudié l'orgue et l'écriture au conservatoire de Paris avec entre autres Frédéric Denis et Stéphane Delplace.
               Il a servi dans plusieurs paroisses parisiennes (Saint-Roch, Saint-Sulpice, Notre-Dame-des-Blancs-Manteaux...) avant de devenir organiste titulaire à Saint-Merry.
-              Vivant actuellement à Orléans, il accompagne la messe dominicale à l’église Notre-Dame-de-Recouvrance et remplace ponctuellement à la cathédrale.
+              Résidant actuellement à Orléans, il accompagne la messe dominicale à l’église Notre-Dame-de-Recouvrance et remplace ponctuellement à la cathédrale.
             </p>
             <p className="opacity-85">
              Il a aussi étudié le chant grégorien auprès de l’Ecole du Chœur grégorien de Paris
-              et a été plusieurs années chanteur à la schola de la paroisse Saint-Roch de Paris.
+              et a chanté plusieurs années à la schola de la paroisse Saint-Roch de Paris.
               Il vient d’être nommé lauréat du concours de composition organisé par Canticum Fidei
               et verra donc trois de ses compositions enregistrées dans le prochain album de l’association.
             </p>
@@ -99,12 +99,11 @@ function BiographyPage() {
               <p className="opacity-85">
                 Plutôt que de m’en désoler, j’ai décidé de me mettre à l’ouvrage : j’ai d’une part progressivement réédité d’anciens cantiques tombés en désuétude,
                 d’autre part réécrit les chants de bonne qualité méritant une meilleure harmonie et enfin composé des pièces originales.
-                Ces nouvelles partitions sont en partie chantées depuis plusieurs années à la paroisse Saint-Roch de Paris où le chœur et l’assemblée sont très satisfaits de ce travail.
+                Ces nouvelles partitions sont chantées depuis plusieurs années à la paroisse Saint-Roch de Paris.
               </p>
               <p className="opacity-85">
                 J’ai donc résolu de mettre le résultat des efforts fournis à la disposition du plus grand nombre en publiant ces partitions sur un site internet dédié.
-                Mon objectif est ainsi de créer un répertoire de chants, déjà connus ou non, mais toujours irréprochables aux points de vue des paroles, de la musique et de la mise en page.
-                De plus, des filtres permettront aux chefs de chœur de trouver rapidement les pièces qui pourraient convenir pour leur prochaine messe.
+                Mon objectif est de créer un répertoire de chants, déjà connus ou non, mais toujours irréprochables aux points de vue des paroles, de la musique et de la mise en page.
               </p>
               <p className="opacity-85">
                 Mon objectif lors de l’harmonisation et la composition des cantiques populaires a été de garder une noble simplicité,
