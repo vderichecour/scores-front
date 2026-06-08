@@ -36,9 +36,14 @@ jobs:
         run: bash scripts/prepare-gandi-deploy.sh
 
       - name: Configure SSH
+        env:
+          GANDI_SSH_KEY: ${{ secrets.GANDI_SSH_KEY }}
+          GANDI_SSH_HOST: ${{ vars.GANDI_SSH_HOST }}
+          GANDI_SSH_USER: ${{ vars.GANDI_SSH_USER }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.GANDI_SSH_KEY }}" > ~/.ssh/gandi_deploy
+          chmod 700 ~/.ssh
+          printf '%s\n' "$GANDI_SSH_KEY" > ~/.ssh/gandi_deploy
           chmod 600 ~/.ssh/gandi_deploy
           ssh-keygen -y -f ~/.ssh/gandi_deploy > /dev/null
           ssh-keyscan -H "$GANDI_SSH_HOST" >> ~/.ssh/known_hosts
