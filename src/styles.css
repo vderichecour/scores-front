@@ -50,13 +50,13 @@
   --secondary-foreground: #2D2D2D;
   --muted: #E8DCC8;
   --muted-foreground: #6B6B6B;
-  --accent: #8B2635;                           /* Bordeaux profond */
+  --accent: #B83A4B;                           /* Bordeaux framboise */
   --accent-foreground: #F5F0E8;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: color-mix(in srgb, #2D2D2D 12%, transparent);
   --input: color-mix(in srgb, #2D2D2D 12%, transparent);
-  --ring: #8B2635;
+  --ring: #B83A4B;
 
   --font-display: "EB Garamond", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
