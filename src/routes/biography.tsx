@@ -81,48 +81,47 @@ function BiographyPage() {
           </div>
         </section>
 
+        <section className="mb-24 md:mb-32 animate-reveal">
+          <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
+            « Il est tout à fait souhaitable que les organistes ne soient pas seulement experts dans le jeu de l'instrument qui leur est confié ;
+                mais ils doivent connaître et pénétrer intimement l'esprit de la liturgie pour qu'en exerçant leur fonction, même dans l'improvisation,
+                ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
+          </p>
+        </section>
+        
         <section className="mt-24 md:mt-32 border-t border-border pt-16 md:pt-24 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-10 md:mb-12">
-            Démarche
+            Ma démarche
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
             <div className="lg:col-span-7 space-y-6 text-lg leading-relaxed">
-              <p className="font-display text-2xl md:text-3xl leading-snug italic">
-                « Il est tout à fait souhaitable que les organistes ne soient pas seulement experts dans le jeu de l'instrument qui leur est confié ;
-                mais ils doivent connaître et pénétrer intimement l'esprit de la liturgie pour qu'en exerçant leur fonction, même dans l'improvisation,
-                ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
+              <p className="opacity-85">
+                Comme de nombreux musiciens d’Église, j’ai souvent souhaité disposer de partitions offrant une plus grande cohérence musicale, une prosodie plus soignée et une présentation éditoriale de meilleure qualité.
+                Cette conviction m’a conduit à entreprendre un travail de longue haleine : rééditer progressivement d’anciens cantiques tombés dans l’oubli, enrichir l’harmonisation de chants de valeur qui méritaient une nouvelle mise en lumière, et composer également des œuvres originales.
               </p>
               <p className="opacity-85">
-                Comme un grand nombre de musiciens d’Eglise, j’ai constaté de nombreux défauts dans les partitions chantées par la plupart des paroisses de France :
-                harmonisations déficientes ne respectant pas les règles élémentaires de la musique, prosodies douteuses, éditions de piètre qualité, etc.
+                Depuis plusieurs années, ces partitions sont chantées à la paroisse Saint-Roch de Paris.
+                Désireux d’en faire profiter un public plus large, j’ai décidé de les mettre à disposition sur ce site.
+                Mon ambition est de constituer un répertoire de chants, connus ou à découvrir, offrant le même souci d’exigence dans les textes, la musique et la présentation.
               </p>
               <p className="opacity-85">
-                Plutôt que de m’en désoler, j’ai décidé de me mettre à l’ouvrage : j’ai d’une part progressivement réédité d’anciens cantiques tombés en désuétude,
-                d’autre part réécrit les chants de bonne qualité méritant une meilleure harmonie et enfin composé des pièces originales.
-                Ces nouvelles partitions sont chantées depuis plusieurs années à la paroisse Saint-Roch de Paris.
+                Dans l’harmonisation comme dans la composition des cantiques populaires, j’ai recherché une noble simplicité.
+                L’objectif est de favoriser la participation de l’assemblée, sans la dérouter par des effets inutiles, tout en permettant aux chœurs de préparer les œuvres avec un temps de répétition raisonnable.
+                Toutes les partitions sont écrites à quatre voix, mais elles peuvent naturellement être interprétées par un chantre accompagné à l’orgue.
               </p>
               <p className="opacity-85">
-                J’ai donc résolu de mettre le résultat des efforts fournis à la disposition du plus grand nombre en publiant ces partitions sur un site internet dédié.
-                Mon objectif est de créer un répertoire de chants, déjà connus ou non, mais toujours irréprochables aux points de vue des paroles, de la musique et de la mise en page.
+                Le site propose également des motets, toujours concis et accessibles à des chorales amateurs.
+                Leur variété de textes permet d’accompagner l’ensemble de l’année liturgique, chaque temps disposant de pièces adaptées.
+                Ils peuvent ainsi enrichir rapidement le répertoire musical de nombreuses paroisses.
               </p>
               <p className="opacity-85">
-                Mon objectif lors de l’harmonisation et la composition des cantiques populaires a été de garder une noble simplicité,
-                de manière que l’assemblée ne soit pas découragée de chanter par des accords inattendus et que le chœur puisse maîtriser la partition avec peu de temps de répétition.
-                Toutes les partitions sont à quatre voix, mais elles peuvent bien sûr être chantées par un chantre seul accompagné par un orgue.
-              </p>
-              <p className="opacity-85">
-                Ce site contient aussi des motets, qui restent de même toujours brefs et aisés à apprendre par un chœur amateur.
-                Ils font en revanche preuve d’une grande diversité dans leurs textes, chaque temps liturgique ayant ses motets correspondants.
-                Ils pourront de la sorte rejoindre rapidement le répertoire d’un grand nombre de paroisses.
-              </p>
-              <p className="opacity-85">
-                J’espère ainsi avoir œuvré à « la gloire de Dieu et la sanctification des fidèles » !
+                J’espère que ce travail contribuera, à sa mesure, à servir « la gloire de Dieu et la sanctification des fidèles ».
               </p>
             </div>
             <figure className="lg:col-span-5">
               <img
                 src={clementPortal4}
-                alt="Mains de Clément Portal sur les claviers d'un orgue"
+                alt="Mains de Clément Portal sur les claviers du grand orgue de Saint-Merry"
                 width={800}
                 height={1200}
                 className="w-full h-auto rounded-sm border border-border"
