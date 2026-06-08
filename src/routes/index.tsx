@@ -12,9 +12,9 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Clément Portal, organiste. Partitions harmonisées et composées, librement disponibles au téléchargement.",
+          "Partitions harmonisées et composées par Clément Portal, organiste et compositeur.",
       },
-      { property: "og:title", content: "Clément Portal — Organiste & Partitions" },
+      { property: "og:title", content: "Clément Portal — Partitions liturgiques" },
       {
         property: "og:description",
         content:
