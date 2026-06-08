@@ -40,13 +40,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.GANDI_SSH_KEY }}" > ~/.ssh/gandi_deploy
           chmod 600 ~/.ssh/gandi_deploy
-          ssh-keyscan -H "${{ secrets.GANDI_SSH_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -H "${{ vars.GANDI_SSH_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Push to Gandi Git and deploy
         env:
-          GANDI_SSH_USER: ${{ secrets.GANDI_SSH_USER }}
-          GANDI_SSH_HOST: ${{ secrets.GANDI_SSH_HOST }}
-          GANDI_GIT_REPO: ${{ secrets.GANDI_GIT_REPO }}
+          GANDI_SSH_USER: ${{ vars.GANDI_SSH_USER }}
+          GANDI_SSH_HOST: ${{ vars.GANDI_SSH_HOST }}
+          GANDI_GIT_REPO: ${{ vars.GANDI_GIT_REPO }}
         run: |
           DEPLOY_BRANCH="main"
           GIT_REMOTE="git+ssh://${GANDI_SSH_USER}@${GANDI_SSH_HOST}/${GANDI_GIT_REPO}"
