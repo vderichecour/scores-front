@@ -36,11 +36,17 @@ jobs:
         run: bash scripts/prepare-gandi-deploy.sh
 
       - name: Configure SSH
+        env:
+          GANDI_SSH_KEY: ${{ secrets.GANDI_SSH_KEY }}
+          GANDI_SSH_HOST: ${{ vars.GANDI_SSH_HOST }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.GANDI_SSH_KEY }}" > ~/.ssh/gandi_deploy
+          chmod 700 ~/.ssh
+          # Passer la clé via une variable d'env pour préserver les retours à la ligne
+          printf '%s\n' "$GANDI_SSH_KEY" > ~/.ssh/gandi_deploy
           chmod 600 ~/.ssh/gandi_deploy
-          ssh-keyscan -H "${{ vars.GANDI_SSH_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/gandi_deploy > /dev/null
+          ssh-keyscan -H "$GANDI_SSH_HOST" >> ~/.ssh/known_hosts
 
       - name: Push to Gandi Git and deploy
         env:
@@ -50,7 +56,7 @@ jobs:
         run: |
           DEPLOY_BRANCH="main"
           GIT_REMOTE="git+ssh://${GANDI_SSH_USER}@${GANDI_SSH_HOST}/${GANDI_GIT_REPO}"
-          SSH_CMD="ssh -i ~/.ssh/gandi_deploy -o IdentitiesOnly=yes"
+          SSH_CMD="ssh -i ~/.ssh/gandi_deploy -o IdentitiesOnly=yes -o BatchMode=yes"
 
           cd .gandi-deploy
           git init -b "$DEPLOY_BRANCH"
