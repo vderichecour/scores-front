@@ -37,26 +37,26 @@
 :root {
   --radius: 0.25rem;
 
-  /* Modern Editorial palette — bright off-white, ink, vivid cobalt accent */
-  --background: oklch(0.985 0.004 240);    /* Bright off-white */
-  --foreground: oklch(0.22 0.02 260);      /* Deep ink with cool tint */
-  --card: oklch(0.985 0.004 240);
-  --card-foreground: oklch(0.22 0.02 260);
-  --popover: oklch(0.985 0.004 240);
-  --popover-foreground: oklch(0.22 0.02 260);
-  --primary: oklch(0.22 0.02 260);
-  --primary-foreground: oklch(0.985 0.004 240);
-  --secondary: oklch(0.95 0.01 250);
-  --secondary-foreground: oklch(0.22 0.02 260);
-  --muted: oklch(0.95 0.01 250);
-  --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.58 0.24 262);          /* Vivid cobalt blue */
-  --accent-foreground: oklch(0.985 0.004 240);
+  /* Bordeaux profond & Ivoire — palette chaleureuse */
+  --background: #F5F0E8;                       /* Ivoire très clair */
+  --foreground: #2D2D2D;                       /* Encre chaude */
+  --card: #F5F0E8;
+  --card-foreground: #2D2D2D;
+  --popover: #F5F0E8;
+  --popover-foreground: #2D2D2D;
+  --primary: #2D2D2D;
+  --primary-foreground: #F5F0E8;
+  --secondary: #E8DCC8;                        /* Ivoire plus foncé */
+  --secondary-foreground: #2D2D2D;
+  --muted: #E8DCC8;
+  --muted-foreground: #6B6B6B;
+  --accent: #8B2635;                           /* Bordeaux profond */
+  --accent-foreground: #F5F0E8;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.22 0.02 260 / 0.12);
-  --input: oklch(0.22 0.02 260 / 0.12);
-  --ring: oklch(0.58 0.24 262);
+  --border: color-mix(in srgb, #2D2D2D 12%, transparent);
+  --input: color-mix(in srgb, #2D2D2D 12%, transparent);
+  --ring: #8B2635;
 
   --font-display: "EB Garamond", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
