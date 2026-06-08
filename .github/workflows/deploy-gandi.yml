@@ -39,24 +39,30 @@ jobs:
         env:
           GANDI_SSH_KEY: ${{ secrets.GANDI_SSH_KEY }}
           GANDI_SSH_HOST: ${{ vars.GANDI_SSH_HOST }}
+          GANDI_SSH_USER: ${{ vars.GANDI_SSH_USER }}
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          # Passer la clé via une variable d'env pour préserver les retours à la ligne
           printf '%s\n' "$GANDI_SSH_KEY" > ~/.ssh/gandi_deploy
           chmod 600 ~/.ssh/gandi_deploy
           ssh-keygen -y -f ~/.ssh/gandi_deploy > /dev/null
           ssh-keyscan -H "$GANDI_SSH_HOST" >> ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<EOF
+          Host gandi
+            HostName ${GANDI_SSH_HOST}
+            User ${GANDI_SSH_USER}
+            IdentityFile ~/.ssh/gandi_deploy
+            IdentitiesOnly yes
+            BatchMode yes
+          EOF
+          chmod 600 ~/.ssh/config
 
       - name: Push to Gandi Git and deploy
         env:
-          GANDI_SSH_USER: ${{ vars.GANDI_SSH_USER }}
-          GANDI_SSH_HOST: ${{ vars.GANDI_SSH_HOST }}
           GANDI_GIT_REPO: ${{ vars.GANDI_GIT_REPO }}
         run: |
           DEPLOY_BRANCH="main"
-          GIT_REMOTE="git+ssh://${GANDI_SSH_USER}@${GANDI_SSH_HOST}/${GANDI_GIT_REPO}"
-          SSH_CMD="ssh -i ~/.ssh/gandi_deploy -o IdentitiesOnly=yes -o BatchMode=yes"
+          GIT_REMOTE="git+ssh://gandi/${GANDI_GIT_REPO}"
 
           cd .gandi-deploy
           git init -b "$DEPLOY_BRANCH"
@@ -65,6 +71,6 @@ jobs:
           git add htdocs
           git commit -m "Deploy ${GITHUB_REF_NAME} (${GITHUB_SHA:0:7})"
 
-          GIT_SSH_COMMAND="$SSH_CMD" git push --force "$GIT_REMOTE" "HEAD:${DEPLOY_BRANCH}"
+          git push --force "$GIT_REMOTE" "HEAD:${DEPLOY_BRANCH}"
 
-          $SSH_CMD "${GANDI_SSH_USER}@${GANDI_SSH_HOST}" "deploy ${GANDI_GIT_REPO} ${DEPLOY_BRANCH}"
+          ssh gandi "deploy ${GANDI_GIT_REPO} ${DEPLOY_BRANCH}"
