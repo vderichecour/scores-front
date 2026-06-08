@@ -112,11 +112,6 @@ function ScoreDetailPage() {
           <h1 className="font-display text-4xl md:text-6xl font-black leading-[0.95] text-balance mb-6">
             {score.title}
           </h1>
-          {score.author && (
-            <p className="text-lg md:text-xl italic opacity-70 mb-4">
-              {score.author}
-            </p>
-          )}
 
           <dl className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-6 gap-y-2 mt-6 text-sm font-mono">
             <dt className="opacity-50 uppercase tracking-widest text-[10px]">Compositeur</dt>
