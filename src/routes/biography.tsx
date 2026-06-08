@@ -28,26 +28,30 @@ function BiographyPage() {
     <>
       <SiteHeader />
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
-        <header className="mb-16 md:mb-24 animate-reveal">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Biographie
-          </p>
-          <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl">
-            Un musicien au service de la liturgie.
-          </h1>
-        </header>
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 mb-16 md:mb-20 items-center">
+          <header className="lg:col-span-7 animate-reveal">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
+              Biographie
+            </p>
+            <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance">
+              Un musicien au service de la liturgie.
+            </h1>
+          </header>
 
-        <figure className="mb-12 md:mb-16 animate-reveal max-w-md md:max-w-lg mx-auto">
-          <img
-            src={clementChurch}
-            alt="Clément Portal dans l'église de Saint-Merry"
-            width={1024}
-            height={1024}
-            className="w-full h-auto rounded-sm border border-border"
-          />
-        </figure>
+          <figure className="lg:col-span-5 animate-reveal [animation-delay:200ms]">
+            <img
+              src={clementChurch}
+              alt="Clément Portal dans l'église de Saint-Merry"
+              width={1024}
+              height={1024}
+              className="w-full aspect-[4/5] object-cover object-[28%_center] rounded-sm border border-border"
+            />
+            <figcaption className="mt-2 text-xs opacity-50 text-right italic">
+              Photo : Caroline Dauger
+            </figcaption>
+          </figure>
+        </section>
 
-        
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 animate-reveal">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32 space-y-2">
@@ -81,15 +85,15 @@ function BiographyPage() {
           </div>
         </section>
 
-        <section className="mb-24 md:mb-32 animate-reveal">
-          <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
+        <section className="mt-16 md:mt-20 animate-reveal text-center">
+          <p className="font-display text-2xl md:text-3xl leading-snug italic max-w-3xl mx-auto">
             « Il est tout à fait souhaitable que les organistes ne soient pas seulement experts dans le jeu de l'instrument qui leur est confié ;
                 mais ils doivent connaître et pénétrer intimement l'esprit de la liturgie pour qu'en exerçant leur fonction, même dans l'improvisation,
                 ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
           </p>
         </section>
-        
-        <section className="mt-24 md:mt-32 border-t border-border pt-16 md:pt-24 animate-reveal">
+
+        <section className="mt-16 md:mt-20 pt-12 md:pt-16 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-10 md:mb-12">
             Ma démarche
           </p>
@@ -126,6 +130,9 @@ function BiographyPage() {
                 height={1200}
                 className="w-full h-auto rounded-sm border border-border"
               />
+              <figcaption className="mt-2 text-xs opacity-50 text-right italic">
+                Photo : Caroline Dauger
+              </figcaption>
             </figure>
           </div>
         </section>
