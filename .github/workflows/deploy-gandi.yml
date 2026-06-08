@@ -40,17 +40,29 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.GANDI_SSH_KEY }}" > ~/.ssh/gandi_deploy
           chmod 600 ~/.ssh/gandi_deploy
-          ssh-keyscan -H "${{ secrets.GANDI_SSH_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/gandi_deploy > /dev/null
+          ssh-keyscan -H "$GANDI_SSH_HOST" >> ~/.ssh/known_hosts
+          # Do not use a heredoc here: YAML indentation would break ssh_config parsing.
+          {
+            echo "Host gandi"
+            echo "  HostName ${GANDI_SSH_HOST}"
+            echo "  User ${GANDI_SSH_USER}"
+            echo "  IdentityFile ~/.ssh/gandi_deploy"
+            echo "  IdentitiesOnly yes"
+            echo "  BatchMode yes"
+          } > ~/.ssh/config
+          chmod 600 ~/.ssh/config
 
       - name: Push to Gandi Git and deploy
         env:
-          GANDI_SSH_USER: ${{ secrets.GANDI_SSH_USER }}
-          GANDI_SSH_HOST: ${{ secrets.GANDI_SSH_HOST }}
-          GANDI_GIT_REPO: ${{ secrets.GANDI_GIT_REPO }}
+          GANDI_GIT_REPO: ${{ vars.GANDI_GIT_REPO }}
+          GANDI_SSH_HOST: ${{ vars.GANDI_SSH_HOST }}
+          GANDI_SSH_USER: ${{ vars.GANDI_SSH_USER }}
         run: |
           DEPLOY_BRANCH="main"
+          GANDI_GIT_REPO="${GANDI_GIT_REPO//[$'\t\r\n ']}"
           GIT_REMOTE="git+ssh://${GANDI_SSH_USER}@${GANDI_SSH_HOST}/${GANDI_GIT_REPO}"
-          SSH_CMD="ssh -i ~/.ssh/gandi_deploy -o IdentitiesOnly=yes"
+          SSH_CMD="ssh -i ~/.ssh/gandi_deploy -o IdentitiesOnly=yes -o BatchMode=yes"
 
           cd .gandi-deploy
           git init -b "$DEPLOY_BRANCH"
