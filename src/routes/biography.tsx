@@ -28,8 +28,8 @@ function BiographyPage() {
     <>
       <SiteHeader />
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 mb-16 md:mb-20 items-center">
-          <header className="lg:col-span-7 animate-reveal">
+        <section className="mb-16 md:mb-20">
+          <header className="animate-reveal">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
               Biographie
             </p>
@@ -37,8 +37,10 @@ function BiographyPage() {
               Un musicien au service de la liturgie.
             </h1>
           </header>
+        </section>
 
-          <figure className="lg:col-span-5 animate-reveal [animation-delay:200ms]">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 animate-reveal">
+          <figure className="lg:col-span-4 lg:sticky lg:top-32 self-start animate-reveal [animation-delay:200ms]">
             <img
               src={clementChurch}
               alt="Clément Portal dans l'église de Saint-Merry"
@@ -50,23 +52,6 @@ function BiographyPage() {
               Photo : Caroline Dauger
             </figcaption>
           </figure>
-        </section>
-
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 animate-reveal">
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-32 space-y-2">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                Date de naissance
-              </p>
-              <p className="font-display text-xl italic">19 mars 1999</p>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground pt-4">
-                Lieu de résidence
-              </p>
-              <p className="font-display text-xl italic">
-                Orléans
-              </p>
-            </div>
-          </div>
           <div className="lg:col-span-8 max-w-2xl space-y-6 text-lg leading-relaxed">
             <p className="font-display text-2xl md:text-3xl leading-snug">
               Clément Portal est organiste et compositeur.
@@ -93,7 +78,7 @@ function BiographyPage() {
                   ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
             </p>
             <p className="text-sm font-mono uppercase tracking-widest opacity-60">
-              — Musicam Sacram, §66
+              Instruction Musicam Sacram, § 67
             </p>
           </div>
         </section>
@@ -105,7 +90,7 @@ function BiographyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
             <div className="lg:col-span-7 space-y-6 text-lg leading-relaxed">
               <p className="opacity-85">
-                Comme de nombreux musiciens d’Église, j’ai souvent souhaité disposer de partitions offrant une plus grande cohérence musicale, une prosodie plus soignée et une présentation éditoriale de meilleure qualité.
+                Comme de nombreux musiciens d’Église, j'ai souvent souhaité disposer de partitions offrant une harmonie irréprochable, une prosodie soignée et une présentation éditoriale de haute qualité.
                 Cette conviction m’a conduit à entreprendre un travail de longue haleine : rééditer progressivement d’anciens cantiques tombés dans l’oubli, enrichir l’harmonisation de chants de valeur qui méritaient une nouvelle mise en lumière, et composer également des œuvres originales.
               </p>
               <p className="opacity-85">

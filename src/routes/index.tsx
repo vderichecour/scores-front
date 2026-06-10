@@ -113,7 +113,7 @@ function HomePage() {
               qui l'emporte sur les autres arts. »
             </p>
             <p className="text-sm font-mono uppercase tracking-widest opacity-60">
-              — Sacrosanctum Concilium, §112
+              Constitution Sacrosanctum Concilium, § 112
             </p>
           </div>
           <p className="text-lg leading-relaxed opacity-80">
