@@ -91,10 +91,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Site de Clément Portal" },
       { property: "og:description", content: "Site de Clément Portal" },
       { name: "twitter:description", content: "Site de Clément Portal" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/32c53674-f14c-4f7a-8a76-e5d2476ab1de/id-preview-104f3049--6a1a4769-8ddb-46b6-8183-5863055f2176.lovable.app-1779391868021.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/32c53674-f14c-4f7a-8a76-e5d2476ab1de/id-preview-104f3049--6a1a4769-8ddb-46b6-8183-5863055f2176.lovable.app-1779391868021.png" },
+      { property: "og:image", content: "https://clementportal.fr/og-image.jpg" },
+      { property: "og:image:alt", content: "Clément Portal, organiste" },
+      { name: "twitter:image", content: "https://clementportal.fr/og-image.jpg" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
