@@ -107,16 +107,21 @@ function HomePage() {
 
         {/* Intro */}
         <section className="mb-24 md:mb-32 animate-reveal">
-          <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
-            « La tradition musicale de l’Église universelle constitue un trésor d’une valeur inestimable
-            qui l’emporte sur les autres arts. »
-          </p>
+          <div className="mb-8">
+            <p className="font-display text-2xl md:text-3xl leading-snug mb-4 italic">
+              « La tradition musicale de l'Église universelle constitue un trésor d'une valeur inestimable
+              qui l'emporte sur les autres arts. »
+            </p>
+            <p className="text-sm font-mono uppercase tracking-widest opacity-60">
+              — Sacrosanctum Concilium, §112
+            </p>
+          </div>
           <p className="text-lg leading-relaxed opacity-80">
             Soyez les bienvenus sur ce site !
           </p>
           <p className="text-lg leading-relaxed opacity-80">
-            Vous y trouverez de nombreuses partitions de musique liturgique que j’ai éditées, harmonisées ou composées.
-            N’hésitez pas à les télécharger, à vous en servir et à en parler autour de vous !
+            Vous y trouverez de nombreuses partitions de musique liturgique que j'ai éditées, harmonisées ou composées.
+            N'hésitez pas à les télécharger, à vous en servir et à en parler autour de vous !
             Veuillez cependant me prévenir si vous comptez les utiliser dans un contexte autre que liturgique.
           </p>
           <p className="text-lg leading-relaxed opacity-80">
