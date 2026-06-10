@@ -24,65 +24,53 @@ export const Route = createFileRoute("/resources")({
 
 type ResourceItem = {
   title: string;
-  author?: string;
   description: string;
   url: string;
-  tags: string[];
 };
 
-const ecclesialResources: ResourceItem[] = [
+const magisterialDocuments: ResourceItem[] = [
   {
     title: "Sacrosanctum Concilium",
-    author: "Concile Vatican II",
-    description:
-      "Constitution sur la sainte Liturgie (1963). Texte fondamental qui réforme la liturgie catholique et pose les bases de la musique sacrée contemporaine.",
+    description: "Constitution sur la sainte Liturgie (Concile Vatican II, 1963).",
     url: "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_fr.html",
-    tags: ["Vatican II", "Constitution", "Réforme liturgique"],
   },
   {
-    title: "Tra le sollecitudini",
-    author: "Pape Pie X",
-    description:
-      "Motu proprio sur la musique sacrée (1903). Définit les principes de la musique liturgique : sainteté, beauté, universalité.",
-    url: "https://www.vatican.va/holy_father/pius_x/motu_proprio/documents/hf_p-x_motu-proprio_19031122_inter-sollicitudines_fr.html",
-    tags: ["Pie X", "Musique sacrée", "Motu proprio"],
+    title: "Présentation générale du Missel romain",
+    description: "Instruction sur la mise en place du Missel romain révisé (2003).",
+    url: "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_fr.html",
   },
   {
-    title: "Musicae sacrae disciplina",
-    author: "Pape Pie XII",
-    description:
-      "Encyclique sur la musique sacrée (1955). Approfondit la doctrine liturgique sur le chant et l'orgue dans la célébration.",
-    url: "https://www.vatican.va/holy_father/pius_xii/encyclicals/documents/hf_p-xii_enc_25121955_musicae-sacrae_fr.html",
-    tags: ["Pie XII", "Encyclique", "Orgue"],
+    title: "Musicam Sacram",
+    description: "Instruction sur la musique dans la liturgie (1967).",
+    url: "https://www.ceremoniaire.net/pastorale1950/docs/musicam_sacram_1967.html",
+  },
+  {
+    title: "Inter pastoralis officii sollicitudines",
+    description: "Motu proprio de saint Pie X sur la musique sacrée (1903).",
+    url: "https://www.unavoce.fr/wp-content/uploads/Musique-sacree-magistere-1903-Tra-le-sollecitudini.pdf",
   },
 ];
 
-const referenceWorks: ResourceItem[] = [
-  {
-    title: "Le Graduel Romain",
-    author: "Abbaye de Solesmes",
-    description:
-      "Livre liturgique contenant les chants de l'Ordinaire et du Propre de la messe. Édition critique de référence pour le chant grégorien.",
-    url: "https://www.solesmes.com/",
-    tags: ["Grégorien", "Messe", "Solesmes"],
-  },
-  {
-    title: "Liber Usualis",
-    author: "Abbaye de Solesmes",
-    description:
-      "Recueil pratique des chants grégoriens les plus courants : messe, vêpres, processions. Indispensable pour tout chantre.",
-    url: "https://www.solesmes.com/",
-    tags: ["Grégorien", "Recueil", "Pratique"],
-  },
-];
-
-const onlineResources: ResourceItem[] = [
+const digitalResources: ResourceItem[] = [
   {
     title: "GregoBase",
-    description:
-      "Base de données collaborative de partitions grégoriennes en format gabc. Permet de générer des partitions prêtes à imprimer.",
-    url: "https://gregobase.seldom.it/",
-    tags: ["Grégorien", "Partitions", "Collaboratif"],
+    description: "Base de données collaborative de partitions grégoriennes.",
+    url: "https://gregobase.selapa.net/",
+  },
+  {
+    title: "CPDL",
+    description: "Choral Public Domain Library — partitions de domaine public.",
+    url: "https://www.cpdl.org/wiki/index.php/Main_Page/fr",
+  },
+  {
+    title: "Chantons en Église",
+    description: "Ressources et partitions pour le chant liturgique.",
+    url: "https://www.chantonseneglise.fr/",
+  },
+  {
+    title: "Liturgie et Sacrements",
+    description: "Site officiel de la liturgie catholique en France.",
+    url: "https://liturgie.catholique.fr/",
   },
 ];
 
@@ -94,22 +82,9 @@ function ResourceCard({ resource }: { resource: ResourceItem }) {
       rel="noopener noreferrer"
       className="group block border border-border p-6 md:p-8 hover:border-accent/40 hover:bg-accent/[0.02] transition-all"
     >
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {resource.tags.map((tag) => (
-          <span
-            key={tag}
-            className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 border border-foreground/20 text-muted-foreground"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-      <h3 className="font-display text-xl md:text-2xl font-semibold mb-2 group-hover:text-accent transition-colors">
+      <h3 className="font-display text-xl md:text-2xl font-semibold mb-3 group-hover:text-accent transition-colors">
         {resource.title}
       </h3>
-      {resource.author && (
-        <p className="font-mono text-xs opacity-60 mb-3">{resource.author}</p>
-      )}
       <p className="text-sm leading-relaxed opacity-80">{resource.description}</p>
       <div className="mt-4 inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
         Consulter →
@@ -161,26 +136,20 @@ function ResourcesPage() {
             Ressources.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Documents fondateurs, ouvrages de référence et ressources en ligne
-            pour la pratique de la musique liturgique.
+            Documents magistériels et ressources numériques pour la pratique de la musique liturgique.
           </p>
         </header>
 
         <div className="space-y-20 md:space-y-28">
           <Section
             label="Textes de l'Église"
-            title="Documents ecclésiaux"
-            resources={ecclesialResources}
-          />
-          <Section
-            label="Ouvrages"
-            title="Répertoires et traités"
-            resources={referenceWorks}
+            title="Documents magistériels"
+            resources={magisterialDocuments}
           />
           <Section
             label="En ligne"
             title="Ressources numériques"
-            resources={onlineResources}
+            resources={digitalResources}
           />
         </div>
       </main>
