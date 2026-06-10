@@ -86,11 +86,16 @@ function BiographyPage() {
         </section>
 
         <section className="mt-16 md:mt-20 animate-reveal text-center">
-          <p className="font-display text-2xl md:text-3xl leading-snug italic max-w-3xl mx-auto">
-            « Il est tout à fait souhaitable que les organistes ne soient pas seulement experts dans le jeu de l'instrument qui leur est confié ;
-                mais ils doivent connaître et pénétrer intimement l'esprit de la liturgie pour qu'en exerçant leur fonction, même dans l'improvisation,
-                ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
-          </p>
+          <div className="max-w-3xl mx-auto">
+            <p className="font-display text-2xl md:text-3xl leading-snug mb-4 italic">
+              « Il est tout à fait souhaitable que les organistes ne soient pas seulement experts dans le jeu de l'instrument qui leur est confié ;
+                  mais ils doivent connaître et pénétrer intimement l'esprit de la liturgie pour qu'en exerçant leur fonction, même dans l'improvisation,
+                  ils enrichissent la célébration selon la vraie nature de chacun de ses éléments, et favorisent la participation des fidèles. »
+            </p>
+            <p className="text-sm font-mono uppercase tracking-widest opacity-60">
+              — Musicam Sacram, §66
+            </p>
+          </div>
         </section>
 
         <section className="mt-16 md:mt-20 pt-12 md:pt-16 animate-reveal">
