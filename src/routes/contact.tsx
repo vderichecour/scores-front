@@ -168,9 +168,14 @@ function ContactPage() {
               demande d'harmonisation ou un simple commentaire à me faire,
               n'hésitez pas à m'écrire.
             </p>
-            <p className="font-display text-2xl md:text-3xl leading-snug mb-8 italic">
-              « Dans l'essentiel, l'unité ; dans les questions douteuses, la liberté ; en tout, la charité. »
-            </p>
+            <div className="mt-10">
+              <p className="font-display text-2xl md:text-3xl leading-snug mb-4 italic">
+                « Dans l'essentiel, l'unité ; dans les questions douteuses, la liberté ; en tout, la charité. »
+              </p>
+              <p className="text-sm font-mono uppercase tracking-widest opacity-60">
+                — Jean XXIII
+              </p>
+            </div>
           </aside>
         </section>
       </main>
