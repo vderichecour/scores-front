@@ -7,7 +7,7 @@ export function SiteFooter() {
         <div className="max-w-md">
           <h4 className="font-display text-3xl md:text-4xl mb-4">Contact</h4>
           <p className="font-mono text-xs uppercase tracking-widest opacity-60 mb-6">
-            Pour toute question concernant les partitions, n'hésitez pas à
+            Pour toute question ou remarque, n'hésitez pas à
             m'écrire.
           </p>
           <Link
