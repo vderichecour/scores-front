@@ -18,6 +18,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ScoresIndexRouteImport } from './routes/scores.index'
 import { Route as ScoresSlugRouteImport } from './routes/scores.$slug'
+import { Route as ApiContactRouteImport } from './routes/api/contact'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -64,6 +65,11 @@ const ScoresSlugRoute = ScoresSlugRouteImport.update({
   path: '/scores/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/contact': typeof ApiContactRoute
   '/scores/$slug': typeof ScoresSlugRoute
   '/scores/': typeof ScoresIndexRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/contact': typeof ApiContactRoute
   '/scores/$slug': typeof ScoresSlugRoute
   '/scores': typeof ScoresIndexRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/contact': typeof ApiContactRoute
   '/scores/$slug': typeof ScoresSlugRoute
   '/scores/': typeof ScoresIndexRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/resources'
     | '/sitemap.xml'
+    | '/api/contact'
     | '/scores/$slug'
     | '/scores/'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/resources'
     | '/sitemap.xml'
+    | '/api/contact'
     | '/scores/$slug'
     | '/scores'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/resources'
     | '/sitemap.xml'
+    | '/api/contact'
     | '/scores/$slug'
     | '/scores/'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiContactRoute: typeof ApiContactRoute
   ScoresSlugRoute: typeof ScoresSlugRoute
   ScoresIndexRoute: typeof ScoresIndexRoute
 }
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScoresSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiContactRoute: ApiContactRoute,
   ScoresSlugRoute: ScoresSlugRoute,
   ScoresIndexRoute: ScoresIndexRoute,
 }
