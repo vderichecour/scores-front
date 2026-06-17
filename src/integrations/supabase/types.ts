@@ -50,8 +50,6 @@ export type Database = {
           id: string
           labels: string[]
           pdf_path: string
-          slug: string
-          sort_order: number
           title: string
           updated_at: string
         }
@@ -60,11 +58,9 @@ export type Database = {
           composer: string
           created_at?: string
           description?: string | null
-          id?: string
+          id: string
           labels?: string[]
           pdf_path: string
-          slug?: string
-          sort_order?: number
           title: string
           updated_at?: string
         }
@@ -76,8 +72,6 @@ export type Database = {
           id?: string
           labels?: string[]
           pdf_path?: string
-          slug?: string
-          sort_order?: number
           title?: string
           updated_at?: string
         }
