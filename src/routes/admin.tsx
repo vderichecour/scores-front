@@ -17,7 +17,6 @@ export const Route = createFileRoute("/admin")({
 
 type Score = {
   id: string;
-  slug: string;
   title: string;
   author: string | null;
   composer: string;
@@ -58,6 +57,21 @@ const parseLabels = (s: string): string[] =>
         .filter(Boolean),
     ),
   );
+
+async function uniqueScoreId(baseSlug: string): Promise<string> {
+  let candidate = baseSlug;
+  let n = 2;
+  while (true) {
+    const { data } = await supabase
+      .from("scores")
+      .select("id")
+      .eq("id", candidate)
+      .maybeSingle();
+    if (!data) return candidate;
+    candidate = `${baseSlug}-${n}`;
+    n++;
+  }
+}
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -142,24 +156,33 @@ function AdminPage() {
     setError(null);
     setSaving(true);
     try {
+      const title = form.title.trim();
+      const baseSlug = slugify(title) || "partition";
+
+      let scoreId: string;
+      if (form.id) {
+        scoreId = form.id;
+      } else {
+        scoreId = await uniqueScoreId(baseSlug);
+      }
+
       let pdfPath = form.pdf_path;
       if (form.file) {
-        const ext = form.file.name.split(".").pop() ?? "pdf";
-        const fname = `${crypto.randomUUID()}.${ext}`;
+        const fname = `${scoreId}.pdf`;
         const { error: upErr } = await supabase.storage
           .from("scores")
-          .upload(fname, form.file, { contentType: "application/pdf" });
+          .upload(fname, form.file, {
+            contentType: "application/pdf",
+            upsert: true,
+          });
         if (upErr) throw upErr;
-        // Delete previous file if replacing
-        if (form.id && form.pdf_path && form.pdf_path !== fname) {
+        if (form.pdf_path && form.pdf_path !== fname) {
           await supabase.storage.from("scores").remove([form.pdf_path]).catch(() => null);
         }
         pdfPath = fname;
       }
       if (!pdfPath) throw new Error("Un PDF est requis.");
 
-      const title = form.title.trim();
-      const baseSlug = slugify(title) || "partition";
       const payload = {
         title,
         author: form.author.trim() || null,
@@ -176,17 +199,9 @@ function AdminPage() {
           .eq("id", form.id);
         if (updErr) throw updErr;
       } else {
-        // Ensure slug uniqueness with a short suffix on collision
-        let slug = baseSlug;
-        const { data: existing } = await supabase
-          .from("scores")
-          .select("slug")
-          .eq("slug", baseSlug)
-          .maybeSingle();
-        if (existing) slug = `${baseSlug}-${crypto.randomUUID().slice(0, 6)}`;
         const { error: insErr } = await supabase
           .from("scores")
-          .insert({ ...payload, slug });
+          .insert({ ...payload, id: scoreId });
         if (insErr) throw insErr;
       }
       resetForm();
@@ -410,7 +425,7 @@ function AdminPage() {
                   <div className="col-span-12 md:col-span-6 flex gap-2 md:justify-end flex-wrap">
                     <Link
                       to="/scores/$slug"
-                      params={{ slug: s.slug }}
+                      params={{ slug: s.id }}
                       className="text-[11px] font-mono uppercase tracking-widest underline opacity-70 hover:opacity-100"
                     >
                       Voir

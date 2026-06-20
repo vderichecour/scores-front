@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { z } from "zod";
+import { contactSchema } from "@/lib/contact-email";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -24,14 +24,12 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const contactSchema = z.object({
-  first_name: z.string().trim().min(1, "Prénom requis").max(100),
-  last_name: z.string().trim().min(1, "Nom requis").max(100),
-  email: z.string().trim().email("Email invalide").max(255),
-  message: z.string().trim().min(1, "Message requis").max(5000),
-});
-
-type FormState = z.infer<typeof contactSchema>;
+type FormState = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  message: string;
+};
 
 const empty: FormState = { first_name: "", last_name: "", email: "", message: "" };
 
@@ -49,13 +47,34 @@ function ContactPage() {
       return;
     }
     setStatus("sending");
-    const { error: insErr } = await supabase
-      .from("contact_messages")
-      .insert(parsed.data);
-    if (insErr) {
-      setStatus("idle");
-      setError(insErr.message);
-      return;
+
+    if (import.meta.env.DEV) {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
+      const data = (await res.json()) as { error?: string };
+      if (!res.ok) {
+        setStatus("idle");
+        setError(data.error ?? "Erreur lors de l'envoi");
+        return;
+      }
+    } else {
+      const { data, error: fnErr } = await supabase.functions.invoke(
+        "send-contact-email",
+        { body: parsed.data },
+      );
+      if (fnErr) {
+        setStatus("idle");
+        setError(fnErr.message);
+        return;
+      }
+      if (data && typeof data === "object" && "error" in data && data.error) {
+        setStatus("idle");
+        setError(String(data.error));
+        return;
+      }
     }
     setStatus("sent");
     setForm(empty);
