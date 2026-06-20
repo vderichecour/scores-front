@@ -20,7 +20,6 @@ export const Route = createFileRoute("/scores/$slug")({
 
 type Score = {
   id: string;
-  slug: string;
   title: string;
   author: string | null;
   composer: string;
@@ -72,8 +71,8 @@ function ScoreDetailPage() {
   useEffect(() => {
     supabase
       .from("scores")
-      .select("id,slug,title,author,composer,pdf_path,labels,description,created_at")
-      .eq("slug", slug)
+      .select("id,title,author,composer,pdf_path,labels,description,created_at")
+      .eq("id", slug)
       .maybeSingle()
       .then(({ data }) => setScore((data as Score | null) ?? null));
   }, [slug]);
@@ -158,28 +157,14 @@ function ScoreDetailPage() {
             <h2 className="font-mono text-[10px] uppercase tracking-[0.25em] opacity-60">
               Partition
             </h2>
-            <button
-              type="button"
-              onClick={async () => {
-                try {
-                  const res = await fetch(url);
-                  const blob = await res.blob();
-                  const blobUrl = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = blobUrl;
-                  a.download = `${score.title}.pdf`;
-                  document.body.appendChild(a);
-                  a.click();
-                  a.remove();
-                  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-                } catch {
-                  window.open(url, "_blank", "noopener,noreferrer");
-                }
-              }}
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-5 py-3 bg-foreground text-background text-[11px] font-mono uppercase tracking-widest hover:bg-accent transition-colors"
             >
               Télécharger le PDF
-            </button>
+            </a>
           </div>
           <div className="border border-border bg-muted/20 aspect-[3/4] w-full overflow-hidden">
             <iframe
