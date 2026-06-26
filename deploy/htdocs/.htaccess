@@ -5,7 +5,11 @@
   RewriteEngine On
   RewriteBase /
 
-  # Do not rewrite real files or directories (assets, robots.txt, sitemap.xml…)
+  # Dynamic sitemap: served by a Supabase Edge Function so newly added
+  # partitions appear without a rebuild. Kept on-domain via redirect.
+  RewriteRule ^sitemap\.xml$ https://ibztpfdeodpxzzuzaidn.supabase.co/functions/v1/sitemap [R=302,L]
+
+  # Do not rewrite real files or directories (assets, robots.txt…)
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
