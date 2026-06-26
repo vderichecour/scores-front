@@ -50,11 +50,31 @@ function formatDate(iso: string) {
 
 const ALL = "__all__";
 
+const PAGE_SIZE = 10;
+
+type PageItem = number | "ellipsis";
+
+function getPageNumbers(current: number, total: number): PageItem[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  const items: PageItem[] = [1];
+  const start = Math.max(2, current - 1);
+  const end = Math.min(total - 1, current + 1);
+  if (start > 2) items.push("ellipsis");
+  for (let i = start; i <= end; i++) items.push(i);
+  if (end < total - 1) items.push("ellipsis");
+  items.push(total);
+  return items;
+}
+
 function ScoresPage() {
   const [scores, setScores] = useState<Score[] | null>(null);
+  const [query, setQuery] = useState<string>("");
   const [composer, setComposer] = useState<string>(ALL);
   const [author, setAuthor] = useState<string>(ALL);
   const [label, setLabel] = useState<string>(ALL);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     supabase
@@ -87,20 +107,96 @@ function ScoresPage() {
 
   const filtered = useMemo(() => {
     if (!scores) return null;
+    const q = query.trim().toLowerCase();
     return scores.filter((s) => {
       if (composer !== ALL && s.composer !== composer) return false;
       if (author !== ALL && (s.author ?? "") !== author) return false;
       if (label !== ALL && !(s.labels ?? []).includes(label)) return false;
+      if (q) {
+        const haystack = [
+          s.title,
+          s.author ?? "",
+          s.composer,
+          ...(s.labels ?? []),
+        ]
+          .join(" ")
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
       return true;
     });
-  }, [scores, composer, author, label]);
+  }, [scores, query, composer, author, label]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [query, composer, author, label]);
+
+  const totalPages = filtered ? Math.max(1, Math.ceil(filtered.length / PAGE_SIZE)) : 1;
+  const currentPage = Math.min(page, totalPages);
+  const paginated = useMemo(() => {
+    if (!filtered) return null;
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return filtered.slice(start, start + PAGE_SIZE);
+  }, [filtered, currentPage]);
+
+  const pageNumbers = useMemo(
+    () => getPageNumbers(currentPage, totalPages),
+    [currentPage, totalPages],
+  );
+
+  const pagination =
+    filtered && totalPages > 1 ? (
+      <nav className="flex items-center justify-end gap-1.5" aria-label="Pagination">
+        <button
+          onClick={() => setPage((p) => Math.max(1, p - 1))}
+          disabled={currentPage <= 1}
+          className="px-3 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all disabled:opacity-30 disabled:pointer-events-none"
+          aria-label="Page précédente"
+        >
+          ‹
+        </button>
+        {pageNumbers.map((item, i) =>
+          item === "ellipsis" ? (
+            <span
+              key={`ellipsis-${i}`}
+              className="px-2 font-mono text-xs opacity-50"
+            >
+              …
+            </span>
+          ) : (
+            <button
+              key={item}
+              onClick={() => setPage(item)}
+              aria-current={item === currentPage ? "page" : undefined}
+              className={`min-w-[2.5rem] px-3 py-2 border text-[11px] font-mono transition-all ${
+                item === currentPage
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-foreground hover:bg-foreground hover:text-background"
+              }`}
+            >
+              {item}
+            </button>
+          ),
+        )}
+        <button
+          onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+          disabled={currentPage >= totalPages}
+          className="px-3 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all disabled:opacity-30 disabled:pointer-events-none"
+          aria-label="Page suivante"
+        >
+          ›
+        </button>
+      </nav>
+    ) : null;
 
   const resetFilters = () => {
+    setQuery("");
     setComposer(ALL);
     setAuthor(ALL);
     setLabel(ALL);
   };
-  const hasActiveFilter = composer !== ALL || author !== ALL || label !== ALL;
+  const hasActiveFilter =
+    query.trim() !== "" || composer !== ALL || author !== ALL || label !== ALL;
 
   const selectClass =
     "w-full border border-foreground bg-transparent px-3 py-2 text-sm font-mono";
@@ -109,7 +205,7 @@ function ScoresPage() {
     <>
       <SiteHeader />
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
-        <header className="mb-16 md:mb-20 animate-reveal">
+        <header className="mb-8 md:mb-10 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
             Catalogue
           </p>
@@ -123,14 +219,35 @@ function ScoresPage() {
         </header>
 
         <section className="animate-reveal [animation-delay:200ms]">
-          <div className="flex items-baseline justify-between mb-8 border-b-2 border-foreground pb-4">
-            <h2 className="font-display text-3xl font-bold tracking-tight">
-              Catalogue
-            </h2>
-            <span className="font-mono text-[10px] uppercase tracking-widest hidden sm:block">
-              Pour la liturgie
-            </span>
-          </div>
+          {scores && scores.length > 0 && (
+            <div className="mb-6">
+              <label className="block text-[10px] font-mono uppercase tracking-widest mb-2 opacity-70">
+                Recherche
+              </label>
+              <div className="relative">
+                <svg
+                  className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 opacity-50"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Titre, auteur, compositeur, étiquette…"
+                  className="w-full border-2 border-foreground bg-transparent pl-12 pr-4 py-3 text-base font-mono placeholder:opacity-40 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-colors"
+                />
+              </div>
+            </div>
+          )}
 
           {scores && scores.length > 0 && (
             <div className="mb-8 grid gap-3 md:grid-cols-[1fr_1fr_1fr_auto] items-end">
@@ -205,8 +322,10 @@ function ScoresPage() {
                 : "Aucune partition ne correspond à ces filtres."}
             </p>
           ) : (
-            <div className="divide-y divide-border">
-              {filtered!.map((s) => (
+            <>
+              {pagination && <div className="mb-8">{pagination}</div>}
+              <div className="divide-y divide-border">
+              {paginated!.map((s) => (
                 <article
                   key={s.id}
                   className="group grid grid-cols-12 py-6 md:py-8 items-baseline md:items-center gap-y-3 gap-x-4 hover:bg-accent/[0.03] transition-colors px-2 -mx-2 md:px-4 md:-mx-4"
@@ -253,7 +372,9 @@ function ScoresPage() {
                   </div>
                 </article>
               ))}
-            </div>
+              </div>
+              {pagination && <div className="mt-12">{pagination}</div>}
+            </>
           )}
         </section>
       </main>
