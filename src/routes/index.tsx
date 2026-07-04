@@ -12,13 +12,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Partitions harmonisées et composées par Clément Portal, organiste et compositeur.",
+          "Catalogue de partitions liturgiques mises à disposition par Clément Portal, organiste et compositeur.",
       },
       { property: "og:title", content: "Clément Portal — Partitions liturgiques" },
       {
         property: "og:description",
         content:
-          "Partitions harmonisées et composées par Clément Portal, organiste & compositeur.",
+          "Catalogue de partitions liturgiques mises à disposition par Clément Portal, organiste et compositeur.",
       },
     ],
   }),
@@ -75,9 +75,8 @@ function HomePage() {
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black mb-8 leading-[0.9] text-balance">
               Harmoniser, composer, partager.
             </h1>
-            <p className="text-xl md:text-2xl leading-relaxed max-w-[34ch] text-pretty opacity-90">
-              Je rassemble ici mes harmonisations et compositions liturgiques,
-              librement mises à disposition.
+            <p className="text-xl md:text-2xl leading-relaxed max-w-[40ch] text-pretty opacity-90">
+              Je mets à votre disposition un catalogue de partitions liturgiques de qualité, accessible librement.
             </p>
             <div className="mt-10">
               <Link
@@ -106,25 +105,12 @@ function HomePage() {
 
         {/* Intro */}
         <section className="mb-24 md:mb-32 animate-reveal">
-          <div className="mb-8">
-            <p className="font-display text-2xl md:text-3xl leading-snug mb-4 italic">
-              « La tradition musicale de l'Église universelle constitue un trésor d'une valeur inestimable
-              qui l'emporte sur les autres arts. »
-            </p>
-            <p className="text-sm font-mono uppercase tracking-widest opacity-60">
-              Constitution Sacrosanctum Concilium, § 112
-            </p>
-          </div>
-          <p className="text-lg leading-relaxed opacity-80">
-            Soyez les bienvenus sur ce site !
+          <p className="font-display text-2xl md:text-3xl leading-snug mb-4 italic">
+            « La tradition musicale de l'Église universelle constitue un trésor d'une valeur inestimable
+            qui l'emporte sur les autres arts. »
           </p>
-          <p className="text-lg leading-relaxed opacity-80">
-            Vous y trouverez de nombreuses partitions de musique liturgique que j'ai éditées, harmonisées ou composées.
-            N'hésitez pas à les télécharger, à vous en servir et à en parler autour de vous !
-            Veuillez cependant me prévenir si vous comptez les utiliser dans un contexte autre que liturgique.
-          </p>
-          <p className="text-lg leading-relaxed opacity-80">
-            Vous pourrez aussi y trouver des liens vers de nombreux documents utiles et que tout musicien liturgique devrait lire !
+          <p className="text-sm font-mono uppercase tracking-widest opacity-60">
+            Constitution Sacrosanctum Concilium, § 112
           </p>
         </section>
 

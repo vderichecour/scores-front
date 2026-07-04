@@ -76,21 +76,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Clément Portal, organiste. Partitions harmonisées et composées, librement disponibles au téléchargement.",
+          "Catalogue de partitions liturgiques mises à disposition par Clément Portal, organiste et compositeur.",
       },
       { name: "author", content: "Clément Portal" },
       { property: "og:title", content: "Clément Portal" },
       {
         property: "og:description",
         content:
-          "Partitions harmonisées et composées par Clément Portal, organiste.",
+          "Catalogue de partitions liturgiques mises à disposition par Clément Portal, organiste et compositeur.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Clément Portal" },
-      { name: "description", content: "Site de Clément Portal" },
-      { property: "og:description", content: "Site de Clément Portal" },
-      { name: "twitter:description", content: "Site de Clément Portal" },
+      {
+        name: "twitter:description",
+        content:
+          "Catalogue de partitions liturgiques mises à disposition par Clément Portal, organiste et compositeur.",
+      },
       { property: "og:image", content: "https://clementportal.fr/og-image.jpg" },
       { property: "og:image:alt", content: "Clément Portal, organiste" },
       { name: "twitter:image", content: "https://clementportal.fr/og-image.jpg" },
