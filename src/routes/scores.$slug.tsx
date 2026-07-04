@@ -1,22 +1,7 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-
-export const Route = createFileRoute("/scores/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug} — Partition — Clément Portal` },
-      {
-        name: "description",
-        content: `Partition « ${params.slug} » — librement disponible au téléchargement.`,
-      },
-    ],
-  }),
-  component: ScoreDetailPage,
-  notFoundComponent: NotFound,
-});
 
 type Score = {
   id: string;
@@ -28,6 +13,61 @@ type Score = {
   description: string | null;
   created_at: string;
 };
+
+async function fetchScore(id: string): Promise<Score | null> {
+  const { data } = await supabase
+    .from("scores")
+    .select("id,title,author,composer,pdf_path,labels,description,created_at")
+    .eq("id", id)
+    .maybeSingle();
+
+  return (data as Score | null) ?? null;
+}
+
+export const Route = createFileRoute("/scores/$slug")({
+  loader: async ({ params }) => fetchScore(params.slug),
+  head: ({ loaderData, params }) => {
+    const partitionTitle = loaderData?.title ?? params.slug;
+    const composer = loaderData?.composer?.trim();
+    const author = loaderData?.author?.trim();
+    const isTraditionalComposer = composer?.toLowerCase() === "traditionnel";
+    const shouldShowComposer = composer && !isTraditionalComposer;
+    const metaTitle = shouldShowComposer
+      ? `${partitionTitle} (${composer}) - Clément Portal`
+      : `${partitionTitle} - Clément Portal`;
+    const description = author
+      ? shouldShowComposer
+        ? `Partition liturgique sur un texte de ${author}, composée par ${composer}, librement disponible au téléchargement.`
+        : `Partition liturgique sur un texte de ${author}, librement disponible au téléchargement.`
+      : shouldShowComposer
+        ? `Partition liturgique composée par ${composer}, librement disponible au téléchargement.`
+        : isTraditionalComposer
+          ? "Partition liturgique traditionnelle, librement disponible au téléchargement."
+          : "Partition liturgique librement disponible au téléchargement.";
+
+    return {
+      meta: [
+        { title: metaTitle },
+        {
+          name: "description",
+          content: description,
+        },
+        { property: "og:title", content: metaTitle },
+        {
+          property: "og:description",
+          content: description,
+        },
+        { name: "twitter:title", content: metaTitle },
+        {
+          name: "twitter:description",
+          content: description,
+        },
+      ],
+    };
+  },
+  component: ScoreDetailPage,
+  notFoundComponent: NotFound,
+});
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
 
@@ -65,28 +105,7 @@ function NotFound() {
 }
 
 function ScoreDetailPage() {
-  const { slug } = Route.useParams();
-  const [score, setScore] = useState<Score | null | undefined>(undefined);
-
-  useEffect(() => {
-    supabase
-      .from("scores")
-      .select("id,title,author,composer,pdf_path,labels,description,created_at")
-      .eq("id", slug)
-      .maybeSingle()
-      .then(({ data }) => setScore((data as Score | null) ?? null));
-  }, [slug]);
-
-  if (score === undefined) {
-    return (
-      <>
-        <SiteHeader />
-        <main className="max-w-4xl mx-auto px-6 py-24 text-sm font-mono opacity-60">
-          Chargement…
-        </main>
-      </>
-    );
-  }
+  const score = Route.useLoaderData();
 
   if (score === null) return <NotFound />;
 
