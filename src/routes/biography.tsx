@@ -11,12 +11,12 @@ export const Route = createFileRoute("/biography")({
       {
         name: "description",
         content:
-          "Clément Portal, organiste et compositeur : parcours, formation, harmonisations et compositions.",
+          "Clément Portal, organiste et compositeur : son parcours et sa démarche au service de la liturgie.",
       },
       { property: "og:title", content: "Biographie — Clément Portal" },
       {
         property: "og:description",
-        content: "Organiste et compositeur.",
+        content: "Clément Portal, organiste et compositeur : son parcours et sa démarche au service de la liturgie.",
       },
     ],
   }),
@@ -34,7 +34,7 @@ function BiographyPage() {
               Biographie
             </p>
             <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance">
-              Un musicien au service de la liturgie.
+              Clément Portal, organiste et compositeur.
             </h1>
           </header>
         </section>
@@ -53,16 +53,13 @@ function BiographyPage() {
             </figcaption>
           </figure>
           <div className="lg:col-span-8 max-w-2xl space-y-6 text-lg leading-relaxed">
-            <p className="font-display text-2xl md:text-3xl leading-snug">
-              Clément Portal est organiste et compositeur.
-            </p>
             <p className="opacity-85">
-              Il a étudié l'orgue et l'écriture au conservatoire de Paris avec entre autres Frédéric Denis et Stéphane Delplace.
+              Clément Portal a étudié l'orgue et l'écriture au conservatoire de Paris avec entre autres Frédéric Denis et Stéphane Delplace.
               Il a servi dans plusieurs paroisses parisiennes (Saint-Roch, Saint-Sulpice, Notre-Dame-des-Blancs-Manteaux...) avant de devenir organiste titulaire à Saint-Merry.
-              Résidant actuellement à Orléans, il accompagne la messe dominicale à l’église Notre-Dame-de-Recouvrance et remplace ponctuellement à la cathédrale.
+              Résidant actuellement à Orléans, il officie régulièrement à la cathédrale et dans d'autres églises du cœur de ville.
             </p>
             <p className="opacity-85">
-             Il a aussi étudié le chant grégorien auprès de l’Ecole du Chœur grégorien de Paris
+             Il a aussi étudié le chant grégorien auprès de l’École du Chœur grégorien de Paris
               et a chanté plusieurs années à la schola de la paroisse Saint-Roch de Paris.
               Il vient d’être nommé lauréat du concours de composition organisé par Canticum Fidei
               et verra donc trois de ses compositions enregistrées dans le prochain album de l’association.
@@ -90,8 +87,8 @@ function BiographyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start">
             <div className="lg:col-span-7 space-y-6 text-lg leading-relaxed">
               <p className="opacity-85">
-                Comme de nombreux musiciens d’Église, j'ai souvent souhaité disposer de partitions offrant une harmonie irréprochable, une prosodie soignée et une présentation éditoriale de haute qualité.
-                Cette conviction m’a conduit à entreprendre un travail de longue haleine : rééditer progressivement d’anciens cantiques tombés dans l’oubli, enrichir l’harmonisation de chants de valeur qui méritaient une nouvelle mise en lumière, et composer également des œuvres originales.
+                Comme de nombreux musiciens d’Église, j'ai souvent souhaité disposer de partitions offrant une harmonie irréprochable, une prosodie soignée et une présentation éditoriale de qualité.
+                Cette conviction m’a conduit à entreprendre un travail de longue haleine : rééditer progressivement d’anciens cantiques tombés dans l’oubli, améliorer l’harmonisation des chants qui le méritaient, et composer des œuvres originales.
               </p>
               <p className="opacity-85">
                 Depuis plusieurs années, ces partitions sont chantées à la paroisse Saint-Roch de Paris.
@@ -99,14 +96,13 @@ function BiographyPage() {
                 Mon ambition est de constituer un répertoire de chants, connus ou à découvrir, offrant le même souci d’exigence dans les textes, la musique et la présentation.
               </p>
               <p className="opacity-85">
-                Dans l’harmonisation comme dans la composition des cantiques populaires, j’ai recherché une noble simplicité.
-                L’objectif est de favoriser la participation de l’assemblée, sans la dérouter par des effets inutiles, tout en permettant aux chœurs de préparer les œuvres avec un temps de répétition raisonnable.
-                Toutes les partitions sont écrites à quatre voix, mais elles peuvent naturellement être interprétées par un chantre accompagné à l’orgue.
+                Dans l’harmonisation comme dans la composition des cantiques, j’ai recherché une noble simplicité.
+                L’objectif est de favoriser la participation de l’assemblée, sans la dérouter par des effets inutiles.
+                Toutes les partitions sont écrites à quatre voix, de manière à pouvoir être chanté par un chœur comme par un chantre accompagné à l’orgue.
               </p>
               <p className="opacity-85">
-                Le site propose également des motets, toujours concis et accessibles à des chorales amateurs.
+                Le site propose également des motets, toujours concis et accessibles, qui peuvent ainsi enrichir rapidement le répertoire musical de nombreuses paroisses.
                 Leur variété de textes permet d’accompagner l’ensemble de l’année liturgique, chaque temps disposant de pièces adaptées.
-                Ils peuvent ainsi enrichir rapidement le répertoire musical de nombreuses paroisses.
               </p>
               <p className="opacity-85">
                 J’espère que ce travail contribuera, à sa mesure, à servir « la gloire de Dieu et la sanctification des fidèles ».
