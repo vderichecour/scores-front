@@ -11,13 +11,13 @@ export const Route = createFileRoute("/scores/")({
       {
         name: "description",
         content:
-          "Catalogue de partitions éditées par Clément Portal, librement téléchargeables au format PDF.",
+          "Catalogue de partitions liturgiques réalisé par Clément Portal, librement accessible.",
       },
       { property: "og:title", content: "Partitions — Clément Portal" },
       {
         property: "og:description",
         content:
-          "Partitions pour orgue : harmonisations et compositions originales.",
+          "Partitions liturgiques librement accessibles.",
       },
     ],
   }),
@@ -139,6 +139,13 @@ function ScoresPage() {
     return filtered.slice(start, start + PAGE_SIZE);
   }, [filtered, currentPage]);
 
+  const resultsSummary = useMemo(() => {
+    if (!filtered || filtered.length === 0) return null;
+    return filtered.length === 1
+      ? "1 partition"
+      : `${filtered.length} partitions`;
+  }, [filtered]);
+
   const pageNumbers = useMemo(
     () => getPageNumbers(currentPage, totalPages),
     [currentPage, totalPages],
@@ -207,13 +214,13 @@ function ScoresPage() {
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <header className="mb-8 md:mb-10 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Catalogue
+            Partitions
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl mb-6">
-            Partitions.
+            Un catalogue au service de la liturgie.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Catalogue de partitions mises à disposition pour le contexte liturgique.
+            Partitions harmonisées, composées ou rééditées, librement accessibles pour un usage liturgique.
             Merci de me prévenir pour tout autre usage.
           </p>
         </header>
@@ -323,7 +330,12 @@ function ScoresPage() {
             </p>
           ) : (
             <>
-              {pagination && <div className="mb-8">{pagination}</div>}
+              <div className="mb-8 flex items-center justify-between gap-4">
+                <p className="text-sm font-mono uppercase tracking-widest opacity-60">
+                  {resultsSummary}
+                </p>
+                {pagination}
+              </div>
               <div className="divide-y divide-border">
               {paginated!.map((s) => (
                 <article

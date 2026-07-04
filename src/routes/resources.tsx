@@ -9,13 +9,13 @@ export const Route = createFileRoute("/resources")({
       {
         name: "description",
         content:
-          "Documents et ressources essentiels pour la musique liturgique : textes de l'Église, répertoires de référence et ouvrages fondamentaux.",
+          "Documents magistériels et ressources utiles pour les musiciens d'Église.",
       },
       { property: "og:title", content: "Ressources — Clément Portal" },
       {
         property: "og:description",
         content:
-          "Documents et ressources pour la musique liturgique.",
+          "Documents magistériels et ressources utiles pour les musiciens d'Église.",
       },
     ],
   }),
@@ -130,13 +130,13 @@ function ResourcesPage() {
       <main className="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
         <header className="mb-16 md:mb-24 animate-reveal">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Bibliothèque
+            Ressources
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-black leading-[0.95] text-balance max-w-4xl mb-6">
-            Ressources.
+            Textes et outils pour la musique liturgique.
           </h1>
           <p className="text-lg md:text-xl max-w-2xl opacity-80">
-            Documents magistériels et ressources numériques pour la pratique de la musique liturgique.
+            Documents magistériels, ressources numériques et références utiles pour approfondir la pratique du chant et de la musique liturgiques.
           </p>
         </header>
 
