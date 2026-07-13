@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { formatScoreDate, pdfUrl } from "@/lib/scores";
 
 type Score = {
   id: string;
@@ -69,20 +70,6 @@ export const Route = createFileRoute("/scores/$slug")({
   notFoundComponent: NotFound,
 });
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-
-function pdfUrl(path: string) {
-  return `${SUPABASE_URL}/storage/v1/object/public/scores/${path}`;
-}
-
-function formatDate(iso: string) {
-  const d = new Date(iso);
-  const dd = String(d.getDate()).padStart(2, "0");
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const yyyy = d.getFullYear();
-  return `${dd}-${mm}-${yyyy}`;
-}
-
 function NotFound() {
   return (
     <>
@@ -125,7 +112,7 @@ function ScoreDetailPage() {
         {/* En-tête : titre + méta */}
         <header className="mb-12 animate-reveal border-b-2 border-foreground pb-10">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent mb-6">
-            Partition · {formatDate(score.created_at)}
+            Partition · {formatScoreDate(score.created_at)}
           </p>
           <h1 className="font-display text-4xl md:text-6xl font-black leading-[0.95] text-balance mb-6">
             {score.title}
