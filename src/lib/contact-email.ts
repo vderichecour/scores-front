@@ -20,14 +20,16 @@ function escapeHtml(text: string): string {
 export async function sendContactEmail(payload: ContactPayload): Promise<void> {
   const adminEmail = process.env.ADMIN_EMAIL_ADDRESS;
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fromEmail =
-    process.env.RESEND_FROM_EMAIL ?? "Contact <onboarding@resend.dev>";
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
 
   if (!adminEmail) {
     throw new Error("ADMIN_EMAIL_ADDRESS non configurée");
   }
   if (!resendApiKey) {
     throw new Error("Service email non configuré");
+  }
+  if (!fromEmail) {
+    throw new Error("RESEND_FROM_EMAIL non configurée");
   }
 
   const { first_name, last_name, email, message } = payload;

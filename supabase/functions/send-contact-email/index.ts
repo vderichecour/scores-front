@@ -87,14 +87,16 @@ Deno.serve(async (req) => {
   try {
     const adminEmail = Deno.env.get("ADMIN_EMAIL_ADDRESS");
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
-    const fromEmail =
-      Deno.env.get("RESEND_FROM_EMAIL") ?? "Contact <onboarding@resend.dev>";
+    const fromEmail = Deno.env.get("RESEND_FROM_EMAIL");
 
     if (!adminEmail) {
       return jsonResponse({ error: "ADMIN_EMAIL_ADDRESS non configurée" }, 500);
     }
     if (!resendApiKey) {
       return jsonResponse({ error: "Service email non configuré" }, 500);
+    }
+    if (!fromEmail) {
+      return jsonResponse({ error: "RESEND_FROM_EMAIL non configurée" }, 500);
     }
 
     const body = await req.json();
@@ -126,8 +128,14 @@ Deno.serve(async (req) => {
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("Resend error:", errText);
-      return jsonResponse({ error: "Impossible d'envoyer l'email" }, 500);
+      console.error("Resend error:", errText, { from: fromEmail, to: adminEmail });
+      return jsonResponse(
+        {
+          error:
+            "Impossible d'envoyer le message pour le moment. Veuillez réessayer plus tard.",
+        },
+        500,
+      );
     }
 
     return jsonResponse({ ok: true });

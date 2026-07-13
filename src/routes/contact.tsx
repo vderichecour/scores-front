@@ -65,14 +65,16 @@ function ContactPage() {
         "send-contact-email",
         { body: parsed.data },
       );
-      if (fnErr) {
+      const serverError =
+        data && typeof data === "object" && "error" in data && data.error
+          ? String(data.error)
+          : null;
+      if (fnErr || serverError) {
         setStatus("idle");
-        setError(fnErr.message);
-        return;
-      }
-      if (data && typeof data === "object" && "error" in data && data.error) {
-        setStatus("idle");
-        setError(String(data.error));
+        setError(
+          serverError ??
+            "Erreur lors de l'envoi du message. Veuillez réessayer.",
+        );
         return;
       }
     }
