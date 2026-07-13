@@ -33,7 +33,15 @@ jobs:
         run: npm ci
 
       - name: Build static site
-        run: npm run build:gandi
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then
+            echo "Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY repository variables."
+            exit 1
+          fi
+          npm run build:gandi
 
       - name: Prepare htdocs for Gandi
         run: bash scripts/prepare-gandi-deploy.sh
