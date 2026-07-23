@@ -67,6 +67,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const UMAMI_WEBSITE_ID = import.meta.env.VITE_UMAMI_WEBSITE_ID as string | undefined;
+const UMAMI_SCRIPT_URL =
+  (import.meta.env.VITE_UMAMI_SCRIPT_URL as string | undefined) ||
+  "https://cloud.umami.is/script.js";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -115,6 +120,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
+    scripts: UMAMI_WEBSITE_ID
+      ? [
+          {
+            children: `window.umamiBeforeSend=function(type,payload){var u=(payload&&payload.url)||"";try{u=new URL(u,location.origin).pathname}catch(e){}if(u==="/admin"||u.indexOf("/admin/")===0||u==="/login"||u.indexOf("/login/")===0)return false;return payload};`,
+          },
+          {
+            src: UMAMI_SCRIPT_URL,
+            defer: true,
+            "data-website-id": UMAMI_WEBSITE_ID,
+            "data-before-send": "umamiBeforeSend",
+          },
+        ]
+      : undefined,
   }),
   shellComponent: RootShell,
   component: RootComponent,
