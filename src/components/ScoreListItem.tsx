@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { formatScoreDate, pdfUrl, type ScoreListItem } from "@/lib/scores";
+import { trackScoreDownload } from "@/lib/umami";
 
 const labelClass =
   "text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 border border-foreground/30";
@@ -35,6 +36,7 @@ export function ScoreListItemRow({ score, onLabelClick }: ScoreListItemProps) {
             href={pdfUrl(score.pdf_path)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackScoreDownload(score)}
             className="inline-block whitespace-nowrap px-2 py-1.5 md:px-4 md:py-2 border border-foreground text-[10px] md:text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
           >
             Télécharger PDF

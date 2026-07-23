@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScoreListItemRow } from "@/components/ScoreListItem";
 import { SCORE_LIST_SELECT, type ScoreListItem } from "@/lib/scores";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Route = createFileRoute("/scores/")({
   head: () => ({
@@ -34,13 +35,27 @@ const PAGE_SIZE = 10;
 
 type PageItem = number | "ellipsis";
 
-function getPageNumbers(current: number, total: number): PageItem[] {
-  if (total <= 7) {
+function getPageNumbers(
+  current: number,
+  total: number,
+  compact: boolean,
+): PageItem[] {
+  const maxWithoutEllipsis = compact ? 5 : 7;
+  if (total <= maxWithoutEllipsis) {
     return Array.from({ length: total }, (_, i) => i + 1);
   }
   const items: PageItem[] = [1];
-  const start = Math.max(2, current - 1);
-  const end = Math.min(total - 1, current + 1);
+  let start = Math.max(2, current - 1);
+  let end = Math.min(total - 1, current + 1);
+  if (compact) {
+    if (current <= 3) {
+      start = 2;
+      end = 3;
+    } else if (current >= total - 2) {
+      start = total - 2;
+      end = total - 1;
+    }
+  }
   if (start > 2) items.push("ellipsis");
   for (let i = start; i <= end; i++) items.push(i);
   if (end < total - 1) items.push("ellipsis");
@@ -49,6 +64,7 @@ function getPageNumbers(current: number, total: number): PageItem[] {
 }
 
 function ScoresPage() {
+  const isMobile = useIsMobile();
   const [scores, setScores] = useState<Score[] | null>(null);
   const [query, setQuery] = useState<string>("");
   const [composer, setComposer] = useState<string>(ALL);
@@ -127,17 +143,20 @@ function ScoresPage() {
   }, [filtered]);
 
   const pageNumbers = useMemo(
-    () => getPageNumbers(currentPage, totalPages),
-    [currentPage, totalPages],
+    () => getPageNumbers(currentPage, totalPages, isMobile),
+    [currentPage, totalPages, isMobile],
   );
 
   const pagination =
     filtered && totalPages > 1 ? (
-      <nav className="flex items-center justify-end gap-1.5" aria-label="Pagination">
+      <nav
+        className="flex items-center justify-end gap-1 md:gap-1.5"
+        aria-label="Pagination"
+      >
         <button
           onClick={() => setPage((p) => Math.max(1, p - 1))}
           disabled={currentPage <= 1}
-          className="px-3 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all disabled:opacity-30 disabled:pointer-events-none"
+          className="px-2.5 md:px-3 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all disabled:opacity-30 disabled:pointer-events-none"
           aria-label="Page précédente"
         >
           ‹
@@ -146,7 +165,7 @@ function ScoresPage() {
           item === "ellipsis" ? (
             <span
               key={`ellipsis-${i}`}
-              className="px-2 font-mono text-xs opacity-50"
+              className="px-1.5 md:px-2 font-mono text-xs opacity-50"
             >
               …
             </span>
@@ -155,7 +174,7 @@ function ScoresPage() {
               key={item}
               onClick={() => setPage(item)}
               aria-current={item === currentPage ? "page" : undefined}
-              className={`min-w-[2.5rem] px-3 py-2 border text-[11px] font-mono transition-all ${
+              className={`min-w-[2rem] md:min-w-[2.5rem] px-2.5 md:px-3 py-2 border text-[11px] font-mono transition-all ${
                 item === currentPage
                   ? "border-foreground bg-foreground text-background"
                   : "border-foreground hover:bg-foreground hover:text-background"
@@ -168,7 +187,7 @@ function ScoresPage() {
         <button
           onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
           disabled={currentPage >= totalPages}
-          className="px-3 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all disabled:opacity-30 disabled:pointer-events-none"
+          className="px-2.5 md:px-3 py-2 border border-foreground text-[11px] font-mono uppercase tracking-widest hover:bg-foreground hover:text-background transition-all disabled:opacity-30 disabled:pointer-events-none"
           aria-label="Page suivante"
         >
           ›
@@ -310,8 +329,8 @@ function ScoresPage() {
             </p>
           ) : (
             <>
-              <div className="mb-8 flex items-center justify-between gap-4">
-                <p className="text-sm font-mono uppercase tracking-widest opacity-60">
+              <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm font-mono uppercase tracking-widest opacity-60 shrink-0">
                   {resultsSummary}
                 </p>
                 {pagination}

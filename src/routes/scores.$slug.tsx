@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { formatScoreDate, pdfUrl } from "@/lib/scores";
+import { trackScoreDownload } from "@/lib/umami";
 
 type Score = {
   id: string;
@@ -167,6 +168,7 @@ function ScoreDetailPage() {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackScoreDownload(score)}
               className="px-5 py-3 bg-foreground text-background text-[11px] font-mono uppercase tracking-widest hover:bg-accent transition-colors"
             >
               Télécharger le PDF
