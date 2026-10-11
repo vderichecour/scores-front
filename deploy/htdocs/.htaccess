@@ -5,6 +5,13 @@
   RewriteEngine On
   RewriteBase /
 
+  # TLS ends in front of Apache. Redirect only when every scheme signal
+  # still says HTTP, so an already-secure request cannot loop.
+  RewriteCond %{REQUEST_SCHEME} !=https
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://clementportal.fr%{REQUEST_URI} [R=301,L,NE]
+
   # Dynamic sitemap: served by a Supabase Edge Function so newly added
   # partitions appear without a rebuild. Kept on-domain via redirect.
   RewriteRule ^sitemap\.xml$ https://ibztpfdeodpxzzuzaidn.supabase.co/functions/v1/sitemap [R=302,L]
